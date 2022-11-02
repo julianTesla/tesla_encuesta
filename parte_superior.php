@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <title>Tesla Estadisticas</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -52,8 +52,9 @@
                 
                 
                 <div class="navbar-nav w-100">
-                    <a href="" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Crear encuestas</a>
+                    <a href="Crear_encuesta.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Crear encuestas</a>
                     <a href="" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Lista de encuesta</a>
+                    <a href="crear_preguntas.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Agregar pregunta</a>
                     <a href="" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Resultados</a>
                     <a href="" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Comentarios</a>
                 </div>
@@ -66,9 +67,6 @@
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0" style="height: 7.5%;">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
-                </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
