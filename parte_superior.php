@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Tesla Estadisticas</title>
+
+    <title>Tesla - Módulo encuestas</title>
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -46,17 +48,17 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 
-                <a href="#" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><img style="width: 40px; height: 40px;" src="./img/tesla.jpeg" alt=""> Tesla</h3>
+                <a href="/tesla_encuesta/resultados.php" class="navbar-brand mx-4 mb-3">
+                <img style="width: 182px; height: 68px;" src="https://institutotesla.com.ar/wp-content/themes/institutotesla/assets/img/logo_footer.svg" alt="">
+                <!-- <h3 class="text-primary"> Tesla</h3> -->
                 </a>
                 
                 
                 <div class="navbar-nav w-100">
                     <a href="Crear_encuesta.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Crear encuestas</a>
                     <a href="" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Lista de encuesta</a>
-                    <a href="crear_preguntas.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Agregar pregunta</a>
-                    <a href="" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Resultados</a>
-                    <a href="" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Comentarios</a>
+                    <a href="/tesla_encuesta/resultados.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Resultados</a>
+                    <a href="/tesla_encuesta/comentarios.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Comentarios</a>
                 </div>
             </nav>
         </div>
@@ -66,14 +68,17 @@
         <!-- Comienzo de contenido  -->
         <div class="content">
             <!-- Navbar Start -->
-            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0" style="height: 7.5%;">
+
+            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0" style="height: 4rem;">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
                 <div class="navbar-nav align-items-center ms-auto">
-                    <div class="nav-item dropdown" >
-                        <a href="#" class="dropdown-item">Cerrar sesion</a>
-                    </div>
+                      <a href="login.php" class="btn btn-outline-primary m-2">Cerrar sesión</a>
                 </div>
             </nav>
             <!-- Navbar End -->
+
