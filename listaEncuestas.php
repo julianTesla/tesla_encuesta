@@ -8,14 +8,12 @@ include "parte_superior.php";
 
             <!-- SELECTOR ENCUESTA -->
             <form action="/" method="POST">
-                <div class="form-floating">
-                    <select name="encuesta" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <select name="encuesta" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option selected="">Seleccionar encuesta</option>
                         <option value="1">Encuesta 1</option>
                         <option value="2">Encuesta 2</option>
                         <option value="3">Encuesta 3</option>
                     </select>
-                    <label for="floatingSelect">Encuesta</label>
-                </div>
             </form>
             <!-- FIN SELECTOR ENCUESTA -->
 
