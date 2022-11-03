@@ -1,5 +1,13 @@
 <?php
 include "parte_superior.php";
+
+include "conexion/conex.php";
+
+$sql_encuesta= "SELECT nombre_encuesta FROM encuestas ORDER BY id_encuesta DESC LIMIT 1;";
+$resultado= mysqli_Query($conex,$sql_encuesta);
+
+while($row= mysqli_fetch_array($resultado))
+{
 ?>
  
  <!-- Form Start -->
@@ -8,7 +16,7 @@ include "parte_superior.php";
                     <div class="col-sm-12 col-xl-6" >
                         <div class="bg-secondary rounded h-100 p-4">
                             <form action="parte_inferior.php">
-                                <h4>Encuesta Nº1</h4>
+                                <h4> <?php echo $row[0]; }?> </h4>
                                 <h6 class="mb-4">Ingrese la pregunta</h6>
                                                      
                                 <div class="row mb-3">
@@ -65,6 +73,14 @@ include "parte_superior.php";
                         </div>
                     </div>
 
+<?php
+/*include "conexion/conex.php";
+ $sql= "SELECT * FROM preguntas,encuestas,tipo_pregunta
+ WHERE diseñar la consulta ";
+ $resultado= mysqli_Query($conex,$sql);
+ if(mysqli_num_rows($resultado)>0)
+{*/
+?>
                     <!--Inicio de tabla-->
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4">
@@ -73,7 +89,7 @@ include "parte_superior.php";
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Pregungta</th>
+                                        <th scope="col">Preguntas</th>
                                         <th scope="col">Tipo de pregunta</th>
                                         <th scope="col">Descripcion</th>
                                     </tr>
@@ -85,23 +101,14 @@ include "parte_superior.php";
                                         <td>Doe</td>
                                         <td>jhon@email.com</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mark@email.com</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>jacob@email.com</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <!--Fin de tabla-->
+<?php                    
+//}
+?>
                 </div>
             </div>
             <!-- Form End -->
@@ -111,4 +118,5 @@ include "parte_superior.php";
 
 <?php
 include "parte_inferior.php";
+mysqli_close($conex);
 ?>

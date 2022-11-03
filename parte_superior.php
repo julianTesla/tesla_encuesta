@@ -13,6 +13,9 @@
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
+    <!--Libreria jquery-->
+    <script src="js/jquery-3.6.1.min.js"></script>
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
