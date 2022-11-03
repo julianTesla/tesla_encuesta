@@ -39,30 +39,154 @@ include "parte_superior.php";
 </div>
 <!-- FIN BARRA DE FILTRO -->
 
-
+<!-- INICIO COMENTARIO -->
 <div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Testimonial</h6>
-                <div class="owl-carousel testimonial-carousel">
-                    <div class="testimonial-item text-center">
-                        <img class="img-fluid rounded-circle mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;">
-                        <h5 class="mb-1">Client Name</h5>
-                        <p>Profession</p>
-                        <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
-                    </div>
-                    <div class="testimonial-item text-center">
-                        <img class="img-fluid rounded-circle mx-auto mb-4" src="img/testimonial-2.jpg" style="width: 100px; height: 100px;">
-                        <h5 class="mb-1">Client Name</h5>
-                        <p>Profession</p>
-                        <p class="mb-0">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="bg-secondary rounded h-100 p-4">
+    <div class="testimonial-item text-center">
+                        <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;"> 
+                            <h6 class="m-2" style="color:red">Alumno #1</h6>
+                            <h6 class="m-2">Encuesta 1</h6>
+                            <h6 class="m-2">Electricista</h6>
+                            <h6 class="m-2">31/10/2022</h6>
+                        </div>
+                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                        </div>
     </div>
 </div>
+<!-- FIN COMENTARIO -->
+
+<!-- INICIO COMENTARIO -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+    <div class="testimonial-item text-center">
+                        <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;"> 
+                            <h6 class="m-2" style="color:red">Alumno #1</h6>
+                            <h6 class="m-2">Encuesta 1</h6>
+                            <h6 class="m-2">Electricista</h6>
+                            <h6 class="m-2">31/10/2022</h6>
+                        </div>
+                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                        </div>
+    </div>
+</div>
+<!-- FIN COMENTARIO -->
+
+<!-- INICIO COMENTARIO -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+    <div class="testimonial-item text-center">
+                        <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;"> 
+                            <h6 class="m-2" style="color:red">Alumno #1</h6>
+                            <h6 class="m-2">Encuesta 1</h6>
+                            <h6 class="m-2">Electricista</h6>
+                            <h6 class="m-2">31/10/2022</h6>
+                        </div>
+                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                        </div>
+    </div>
+</div>
+<!-- FIN COMENTARIO -->
+
+<!-- INICIO COMENTARIO -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+    <div class="testimonial-item text-center">
+                        <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;"> 
+                            <h6 class="m-2" style="color:red">Alumno #1</h6>
+                            <h6 class="m-2">Encuesta 1</h6>
+                            <h6 class="m-2">Electricista</h6>
+                            <h6 class="m-2">31/10/2022</h6>
+                        </div>
+                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                        </div>
+    </div>
+</div>
+<!-- FIN COMENTARIO -->
+
+<!-- INICIO COMENTARIO -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+    <div class="testimonial-item text-center">
+                        <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;"> 
+                            <h6 class="m-2" style="color:red">Alumno #1</h6>
+                            <h6 class="m-2">Encuesta 1</h6>
+                            <h6 class="m-2">Electricista</h6>
+                            <h6 class="m-2">31/10/2022</h6>
+                        </div>
+                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                        </div>
+    </div>
+</div>
+<!-- FIN COMENTARIO -->
+
+<!-- INICIO COMENTARIO -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+    <div class="testimonial-item text-center">
+                        <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;"> 
+                            <h6 class="m-2" style="color:red">Alumno #1</h6>
+                            <h6 class="m-2">Encuesta 1</h6>
+                            <h6 class="m-2">Electricista</h6>
+                            <h6 class="m-2">31/10/2022</h6>
+                        </div>
+                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                        </div>
+    </div>
+</div>
+<!-- FIN COMENTARIO -->
+
+<!-- INICIO COMENTARIO -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+    <div class="testimonial-item text-center">
+                        <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;"> 
+                            <h6 class="m-2" style="color:red">Alumno #1</h6>
+                            <h6 class="m-2">Encuesta 1</h6>
+                            <h6 class="m-2">Electricista</h6>
+                            <h6 class="m-2">31/10/2022</h6>
+                        </div>
+                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                        </div>
+    </div>
+</div>
+<!-- FIN COMENTARIO -->
+
+<!-- INICIO COMENTARIO -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+    <div class="testimonial-item text-center">
+                        <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;"> 
+                            <h6 class="m-2" style="color:red">Alumno #1</h6>
+                            <h6 class="m-2">Encuesta 1</h6>
+                            <h6 class="m-2">Electricista</h6>
+                            <h6 class="m-2">31/10/2022</h6>
+                        </div>
+                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                        </div>
+    </div>
+</div>
+<!-- FIN COMENTARIO -->
+
+<!-- INICIO COMENTARIO -->
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+    <div class="testimonial-item text-center">
+                        <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;"> 
+                            <h6 class="m-2" style="color:red">Alumno #1</h6>
+                            <h6 class="m-2">Encuesta 1</h6>
+                            <h6 class="m-2">Electricista</h6>
+                            <h6 class="m-2">31/10/2022</h6>
+                        </div>
+                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                        </div>
+    </div>
+</div>
+<!-- FIN COMENTARIO -->
+
+
+
+
+
 
 <?php
 include "parte_inferior.php";
