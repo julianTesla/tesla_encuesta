@@ -57,11 +57,11 @@
                             <h5 style="text-align: center;">Módulo de encuestas</h5><br>
 
                             <div class="form-floating mb-3">
-                                <input name="usuario" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <input name="usuario" type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                                 <label for="floatingInput">Usuario:</label>
                             </div>
                             <div class="form-floating mb-4">
-                                <input name="contraseña" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <input name="contraseña" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                                 <label for="floatingPassword">Contraseña:</label>
                             </div>
 
