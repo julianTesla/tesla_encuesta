@@ -7,8 +7,10 @@ $sql_encuesta= "SELECT nombre_encuesta, id_encuesta FROM encuestas ORDER BY id_e
 $resultado= mysqli_Query($conex,$sql_encuesta);
 
 while($row= mysqli_fetch_array($resultado))
-$grupo_id= $row[1];
 {
+$grupo_id= $row[1];
+$nombre_encuesta= $row[0];
+
 ?>
  
  <!-- Form Start -->
@@ -17,7 +19,7 @@ $grupo_id= $row[1];
                     <div class="col-sm-12 col-xl-6" >
                         <div class="bg-secondary rounded h-100 p-4">
                             <form action="back/guardar_pregunta.php" method="POST">
-                                <h4> <?php echo $row[0]; ?> </h4>
+                                <h4> <?php echo $row[0];   ?> </h4>
                                 <h6 class="mb-4">Ingrese la pregunta</h6>
                                 <input style="position: absolute; visibility: hidden;" type="int" name="encuesta_id" value=" <?php echo $row[1]; }?>" >
                                 <div class="row mb-3">
@@ -30,11 +32,11 @@ $grupo_id= $row[1];
                                 <fieldset class="row mb-3">
                                     <legend class="col-form-label col-sm-2 pt-0">Tipo de pregunta</legend>
                                     <div class="col-sm-10">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="1" checked onclick="mostrar_checkbox();">
+                                    <input class="form-check-input" type="radio" name="tipo_pregunta" id="gridRadios1" value="1" checked onclick="mostrar_checkbox();">
                                             <label class="form-check-label" for="gridRadios1">
                                              Múltiple choice      
                                             </label>
-                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="2" onclick="mostrar_texto();">
+                                            <input class="form-check-input" type="radio" name="tipo_pregunta" id="gridRadios1" value="2" onclick="mostrar_texto();">
                                             <label class="form-check-label">
                                                 Texto
                                             </label>   
@@ -75,23 +77,25 @@ $grupo_id= $row[1];
                     </div>
 
 <?php
-include "conexion/conex.php";
- $sql= "SELECT id_pregunta, nombre_pregunta, tipo, descripcion, nombre_encuesta  
- FROM `preguntas`, tipos_preguntas,opciones,encuestas 
- WHERE preguntas.id_pregunta = encuestas.id_encuesta 
- AND tipos_preguntas.id_tipo_pregunta = preguntas.tipo_pregunta_id 
- AND preguntas.id_pregunta = opciones.pregunta_id AND encuestas.id_encuesta = '$grupo_id' ORDER BY id_pregunta DESC LIMIT 1; ";
 
+ $sql= "SELECT id_pregunta, nombre_pregunta, tipo, nombre_encuesta 
+ FROM `preguntas`, tipos_preguntas,encuestas 
+ WHERE preguntas.encuesta_id = '$grupo_id' AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta
+ AND encuestas.id_encuesta = '$grupo_id';";
  $resultado= mysqli_Query($conex,$sql);
+
+ $sql2= "SELECT descripcion, pregunta_id FROM opciones, preguntas, encuestas, tipos_preguntas 
+ WHERE preguntas.encuesta_id = '$grupo_id' AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
+ AND encuestas.id_encuesta = '$grupo_id' AND opciones.pregunta_id = preguntas.id_pregunta;";
+ $resultado2= mysqli_Query($conex, $sql2);
+ 
  if(mysqli_num_rows($resultado)>0)
 {
-    while($row= mysqli_fetch_array($resultado))
-    {
 ?>
                     <!--Inicio de tabla-->
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4"> <?php echo $row[4]; ?> </h6>
+                            <h5 class="mb-4"> <?php echo $nombre_encuesta; ?> </h5>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -101,13 +105,24 @@ include "conexion/conex.php";
                                         <th scope="col">Descripcion</th>
                                     </tr>
                                 </thead>
+                                <?php
+                                while($row= mysqli_fetch_array($resultado))
+                                    {
+                                ?>
                                 <tbody>
                                     <tr>
                                         <?php
                                        echo  '<td>'.$row[0].'</td>';
                                         echo '<td>'.$row[1].'</td>';
                                         echo '<td>'.$row[2].'</td>';
-                                        echo '<td>'.$row[3].'</td>';
+                                        echo '<td>';
+                                             while($row2= mysqli_fetch_array($resultado2))
+                                             {
+                                                echo $row2[0];
+                                                echo '<br>';
+                                             }
+                                        echo '</td> ';
+                                        echo '<br>';
                                     }
                                     ?>
                                     </tr>

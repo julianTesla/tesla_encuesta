@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2022 a las 20:42:08
+-- Tiempo de generación: 04-11-2022 a las 23:47:20
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -63,8 +63,19 @@ CREATE TABLE `cursos` (
 
 CREATE TABLE `encuestas` (
   `id_encuesta` int(11) NOT NULL,
-  `nombre_encuesta` int(11) NOT NULL
+  `nombre_encuesta` text COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `encuestas`
+--
+
+INSERT INTO `encuestas` (`id_encuesta`, `nombre_encuesta`) VALUES
+(6, '0'),
+(7, '0'),
+(8, 'Encuesta Nº1'),
+(9, 'Encuesta julian'),
+(10, 'Encuesta final');
 
 -- --------------------------------------------------------
 
@@ -110,7 +121,18 @@ INSERT INTO `opciones` (`id_opciones`, `descripcion`, `pregunta_id`) VALUES
 (25, 'le', 11),
 (26, 'lo', 11),
 (27, 'pop', 12),
-(28, 'comentanos', 13);
+(28, 'comentanos', 13),
+(29, 'uno', 14),
+(30, 'dos', 14),
+(31, 'uno', 15),
+(32, 'dos', 15),
+(33, 'esta es la marca de agua', 16),
+(34, 'opcion1', 17),
+(35, 'opcion2', 17),
+(36, 'opcion3', 17),
+(37, 'opcion4', 17),
+(38, 'opcion5', 17),
+(39, 'marca de agua', 18);
 
 -- --------------------------------------------------------
 
@@ -140,7 +162,12 @@ INSERT INTO `preguntas` (`id_pregunta`, `nombre_pregunta`, `tipo_pregunta_id`, `
 (10, 'pregunta Nº7  de la encuesta 6', 1, 0),
 (11, 'pregunta Nº7  de la encuesta 6', 1, 0),
 (12, 'pregunta Nº7 de la encuesta 6', 1, 0),
-(13, 'pregunta Nº7 de la encuesta 6', 1, 0);
+(13, 'pregunta Nº7 de la encuesta 6', 1, 0),
+(14, 'Julian', 1, 8),
+(15, 'pregunta julian', 1, 9),
+(16, 'pregunta 2', 1, 9),
+(17, '¿Pregunta final?', 1, 10),
+(18, '¿Pregunta final dos?', 2, 10);
 
 -- --------------------------------------------------------
 
@@ -279,19 +306,19 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT de la tabla `encuestas`
 --
 ALTER TABLE `encuestas`
-  MODIFY `id_encuesta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_encuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `opciones`
 --
 ALTER TABLE `opciones`
-  MODIFY `id_opciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_opciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `resultados`
@@ -315,12 +342,6 @@ ALTER TABLE `tipos_preguntas`
 ALTER TABLE `asignacion_encuesta`
   ADD CONSTRAINT `asignacion_encuesta_ibfk_2` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`id_curso`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `asignacion_encuesta_ibfk_3` FOREIGN KEY (`encuesta_id`) REFERENCES `encuestas` (`id_encuesta`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `encuestas`
---
-ALTER TABLE `encuestas`
-  ADD CONSTRAINT `encuestas_ibfk_1` FOREIGN KEY (`id_encuesta`) REFERENCES `preguntas` (`encuesta_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `opciones`

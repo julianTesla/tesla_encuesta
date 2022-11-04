@@ -4,13 +4,13 @@ include "../conexion/conex.php";
 //recibimos los datos enviados del formulario y los almacenamos en variables
 $nombre_pregunta=$_POST['nombre_pregunta'];
 $encuesta_id= $_POST['encuesta_id'];
-$tipo_pregunta=1;
 $opcion_1=$_POST['opcion_1'];
 $opcion_2=$_POST['opcion_2'];
 $opcion_3=$_POST['opcion_3'];
 $opcion_4=$_POST['opcion_4'];
 $opcion_5=$_POST['opcion_5'];
 $descripcion_texto=$_POST['descripcion_texto'];
+$tipo_pregunta = $_POST['tipo_pregunta'];
 
 //insertar la pregunta 
 $sql_pregunta=" INSERT INTO preguntas (nombre_pregunta, encuesta_id, tipo_pregunta_id)

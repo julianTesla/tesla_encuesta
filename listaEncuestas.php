@@ -1,5 +1,7 @@
 <?php
 include "parte_superior.php";
+
+include "conexion/conex.php";
 ?>
 
 <div class="container-fluid pt-4 px-4">
@@ -10,9 +12,14 @@ include "parte_superior.php";
             <form action="/" method="POST">
                 <select name="encuesta" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                     <option selected="">Seleccionar encuesta</option>
-                    <option value="1">Encuesta 1</option>
-                    <option value="2">Encuesta 2</option>
-                    <option value="3">Encuesta 3</option>
+<?php
+    $sql= "SELECT id_encuesta, nombre_encuesta FROM encuestas";
+    $resultado= mysqli_Query($conex, $sql);  
+    while($row= mysqli_fetch_array($resultado))
+    {
+            echo '<option value="'.$row[0].'">'.$row[1].'</option>';
+    }            
+?>   
                 </select>
             </form>
             <!-- FIN SELECTOR ENCUESTA -->
@@ -241,5 +248,7 @@ include "parte_superior.php";
 
 
 <?php
+mysqli_close($conex);
+
 include "parte_inferior.php";
 ?>
