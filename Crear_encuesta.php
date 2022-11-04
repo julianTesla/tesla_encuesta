@@ -7,9 +7,10 @@ include "parte_superior.php";
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary rounded h-100 p-4">
                             <form action="back/guardar_encuesta.php" method="POST">
-                                <h6 class="mb-4">Nombre de encuesta</h6>
-                                <input name="encuesta" type="Text" class="form-control">
-                                <input type="submit" class="btn btn-primary m-2" value="Crear encuesta">   
+                                <h6 class="mb-3">Crear nueva encuesta:</h6>
+
+                                <input name="encuesta" type="Text" class="form-control" placeholder="Nombre de encuesta">
+                                <input type="submit" class="btn btn-primary mt-3" value="Crear">   
                             </form>     
                         </div>
                     </div>
