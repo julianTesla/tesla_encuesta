@@ -77,11 +77,11 @@ $nombre_encuesta= $row[0];
                     </div>
 
 <?php
-
+// TRAEMOS LOS DATOS DE LAS PREGUNTAS CREADAS 
  $sql= "SELECT id_pregunta, nombre_pregunta, tipo, nombre_encuesta 
  FROM `preguntas`, tipos_preguntas,encuestas 
  WHERE preguntas.encuesta_id = '$grupo_id' AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta
- AND encuestas.id_encuesta = '$grupo_id';";
+ AND encuestas.id_encuesta = '$grupo_id' ";
  $resultado= mysqli_Query($conex,$sql);
 
  $sql2= "SELECT descripcion, pregunta_id FROM opciones, preguntas, encuestas, tipos_preguntas 
@@ -142,6 +142,6 @@ $nombre_encuesta= $row[0];
 
 
 <?php
-include "parte_inferior.php";
 mysqli_close($conex);
+include "parte_inferior.php";
 ?>

@@ -1,18 +1,18 @@
 <?php
 include "../conexion/conex.php";
 
-$id_encuesta= $_POST['encuesta'];
+$grupo_id= $_POST['encuesta'];
 
+
+//devolver los datos que solicitados 
 $sql= "SELECT id_pregunta, nombre_pregunta, tipo, nombre_encuesta 
-FROM `preguntas`, tipos_preguntas,encuestas 
-WHERE preguntas.encuesta_id = '$id_encuesta' AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta
-AND encuestas.id_encuesta = '$id_encuesta' ";
-$resultado= mysqli_Query($conex,$sql); 
-
+FROM `preguntas`, tipos_preguntas,encuestas WHERE preguntas.encuesta_id = '$grupo_id' 
+AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta AND encuestas.id_encuesta = '$grupo_id' ";
+$resultado= mysqli_query($conex, $sql);
 
 while($row= mysqli_fetch_array($resultado))
 {
-$respuesta='<div class="container-fluid pt-4 px-4">
+ $respuesta='<div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h5 class="mb-0">'.$row[3].'</h5>
@@ -60,5 +60,6 @@ $respuesta='<div class="container-fluid pt-4 px-4">
             </div>';
 }
 
-echo $respuesta;
+echo $respuesta;    
+
 ?>
