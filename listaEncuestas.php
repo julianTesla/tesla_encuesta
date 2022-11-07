@@ -17,9 +17,7 @@ include "conexion/conex.php";
                 </select>
             </form>-->
 
-
-            <form action="/back/buscar_encuesta.php" method="POST">
-                <select name="encuesta" class="form-select" id="encuesta">
+                <select name="encuesta" class="form-select" id="buscar_encuesta" onchange= "buscar_encuesta();">
                     <option value="0">Seleccionar encuesta</option>
                     <?php
                     //TRAEMOS LAS ENCUESTAS DISPONIBLES DE LA BASE DE DATOS
@@ -30,7 +28,6 @@ include "conexion/conex.php";
                     }
                     ?>
                 </select>
-            </form>
             <!-- FIN SELECTOR ENCUESTA -->
 
 
@@ -45,12 +42,21 @@ include "conexion/conex.php";
     </div>
 </div>
 
+<div id="respuesta"></div>
 
+<?php
+$sql2= "SELECT DISTINCT nombre_encuesta, nombre_pregunta, tipo 
+FROM encuestas,preguntas, tipos_preguntas, opciones WHERE encuestas.id_encuesta = preguntas.encuesta_id 
+AND preguntas.id_pregunta = opciones.pregunta_id AND tipos_preguntas.id_tipo_pregunta = preguntas.tipo_pregunta_id";
+$resultado2= mysqli_Query($conex,$sql2);
+while($row2= mysqli_fetch_array($resultado2))
+{ array_unique($row2);
+?>
 <!-- INICIO ENCUESTA -->
-<div class="container-fluid pt-4 px-4" id="respuesta">
+<div class="container-fluid pt-4 px-4">
     <div class="bg-secondary text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h5 class="mb-0">ENCUESTA 2</h5>
+            <h5 class="mb-0"><?php echo $row2[0]; ?></h5>
             
             <!-- BOTON EDITAR ENCUESTA 
             <form action="/" method="GET">
@@ -84,8 +90,8 @@ include "conexion/conex.php";
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Pregunta 1</td>
-                        <td>Multiple choice</td>
+                        <td><?php echo $row2[1]; ?></td>
+                        <td><?php echo $row2[2]; ?></td>
                         <td>1- Opcion a<br>
                             2- Opcion b<br>
                             3- Opcion c</td>
@@ -120,7 +126,9 @@ include "conexion/conex.php";
     </div>
 </div>
 <!-- FIN ENCUESTA -->
-
+<?php
+}
+?>
 
 <!-- INICIO ENCUESTA -->
 <div class="container-fluid pt-4 px-4">
@@ -185,26 +193,17 @@ include "conexion/conex.php";
 <!-- FIN ENCUESTA -->
 
 <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        buscar_encuesta();
 
-        ('#encuesta').change(function() {
-            buscar_encuesta();
-        })
-    });
-</script>
-
-<script type="text/javascript">
-    $(function buscar_encuesta() {
+    function buscar_encuesta() {
         $.ajax({
-            data: "encuesta=" + $('#encuesta').val(),
-            url: 'back/buscar_encuesta.php',
             type: 'POST',
+            url: 'back/buscar_encuesta.php',
+            data: "encuestas=" + $('#buscar_encuesta').val(),
             success: function(mensaje) {
-                $("respuesta").html(mensaje);
+                $('#respuesta').html(mensaje);
             }
         });
-    });
+    }
 </script>
 
 

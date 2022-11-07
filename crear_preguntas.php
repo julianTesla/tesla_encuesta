@@ -25,7 +25,7 @@ $nombre_encuesta= $row[0];
                                 <div class="row mb-3">
                                     <label for="inputEmail3" class="col-sm-2 col-form-label">Pregunta:</label>
                                     <div class="col-sm-10">
-                                        <input name="nombre_pregunta" type="Text" class="form-control" id="inputEmail3" require>
+                                        <input name="nombre_pregunta" type="Text" class="form-control" id="inputEmail3" required>
                                     </div>
                                 </div>
                                 
@@ -43,8 +43,8 @@ $nombre_encuesta= $row[0];
                                         <div class="form-chek">
                                             
                                             <div id="checkbox">
-                                                   <label>Opcion 1:</label> <input class="form-control" type="text" name="opcion_1" id="descripcion1">
-                                                   <label>Opcion 2:</label> <input class="form-control" type="text" name="opcion_2" id="descripcion2">
+                                                   <label>Opcion 1:</label> <input class="form-control" type="text" name="opcion_1" id="descripcion1" >
+                                                   <label>Opcion 2:</label> <input class="form-control" type="text" name="opcion_2" id="descripcion2" >
                                                    <button type="button" class="btn btn-sm btn-secondary m-2" id="boton3" onclick="agregar_opcion3()">+ Agregar opción</button>
                                                    <div id="opcion3">
                                                    <label>Opcion 3:</label> <input class="form-control" type="text" name="opcion_3" id="descripcion3">
@@ -84,11 +84,12 @@ $nombre_encuesta= $row[0];
  AND encuestas.id_encuesta = '$grupo_id' ";
  $resultado= mysqli_Query($conex,$sql);
 
+///////////////////////////////////////////
  $sql2= "SELECT descripcion, pregunta_id FROM opciones, preguntas, encuestas, tipos_preguntas 
  WHERE preguntas.encuesta_id = '$grupo_id' AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
- AND encuestas.id_encuesta = '$grupo_id' AND opciones.pregunta_id = preguntas.id_pregunta;";
+ AND encuestas.id_encuesta = '$grupo_id' AND opciones.pregunta_id = preguntas.id_pregunta";
  $resultado2= mysqli_Query($conex, $sql2);
- 
+
  if(mysqli_num_rows($resultado)>0)
 {
 ?>
@@ -108,6 +109,7 @@ $nombre_encuesta= $row[0];
                                 <?php
                                 while($row= mysqli_fetch_array($resultado))
                                     {
+                                        $valor= $row[0];
                                 ?>
                                 <tbody>
                                     <tr>
@@ -118,11 +120,18 @@ $nombre_encuesta= $row[0];
                                         echo '<td>';
                                              while($row2= mysqli_fetch_array($resultado2))
                                              {
-                                                echo $row2[0];
-                                                echo '<br>';
+                                                
+                                                if($valor == $row2[1])
+                                                {
+                                                    echo  $row2[0];
+                                                    echo '<br>';
+                                                }
+                                                else
+                                                {
+                                                    break 1;
+                                                }
                                              }
-                                        echo '</td> ';
-                                        echo '<br>';
+                                        echo '</td>';
                                     }
                                     ?>
                                     </tr>
