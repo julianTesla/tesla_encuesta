@@ -9,24 +9,31 @@ include "conexion/conex.php";
         <div class="d-flex align-items-center justify-content-around">
 
             <!-- SELECTOR ENCUESTA -->
-            <form action="/" method="POST">
+
+            <!-- SELECTOR HARCODEADO -->
+            <!-- <form action="/" method="POST">
                 <select name="encuesta" class="form-select" id="encuesta">
-                    <option value="">Seleccionar encuesta</option>
+                    <option value="">Seleccionar encuesta</option> 
+                </select>
+            </form>-->
 
 
-<?php
-     //TRAEMOS LAS ENCUESTAS DISPONIBLES DE LA VASE DE DATOS
-    $sql= "SELECT id_encuesta, nombre_encuesta FROM encuestas";
-    $resultado= mysqli_Query($conex, $sql);  
-    while($row= mysqli_fetch_array($resultado))
-    {
-            echo '<option value="'.$row[0].'">'.$row[1].'</option>';
-    }            
-?>   
-
+            <form action="/back/buscar_encuesta.php" method="POST">
+                <select name="encuesta" class="form-select" id="encuesta">
+                    <option value="0">Seleccionar encuesta</option>
+                    <?php
+                    //TRAEMOS LAS ENCUESTAS DISPONIBLES DE LA BASE DE DATOS
+                    $sql = "SELECT id_encuesta, nombre_encuesta FROM encuestas";
+                    $resultado = mysqli_Query($conex, $sql);
+                    while ($row = mysqli_fetch_array($resultado)) {
+                        echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+                    }
+                    ?>
                 </select>
             </form>
             <!-- FIN SELECTOR ENCUESTA -->
+
+
 
             <!-- BOTON CREAR ENCUESTA -->
             <form action="./Crear_encuesta.php" method=""><button type="submit" href="#" class="btn btn-primary d-flex align-items-center justify-content-between p-2" style="width: 160px;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
@@ -38,12 +45,14 @@ include "conexion/conex.php";
     </div>
 </div>
 
+
 <!-- INICIO ENCUESTA -->
 <div class="container-fluid pt-4 px-4" id="respuesta">
     <div class="bg-secondary text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h5 class="mb-0">ENCUESTA 2</h5>
-            <!-- BOTON EDITAR ENCUESTA
+            
+            <!-- BOTON EDITAR ENCUESTA 
             <form action="/" method="GET">
                 <button type="submit" class="btn btn-success">Editar encuesta <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z" />
@@ -52,6 +61,16 @@ include "conexion/conex.php";
                     </svg>
                 </button>
             </form> -->
+
+             <!-- BOTON ASIGNAR ENCUESTA -->
+             <form action="./asignarEncuesta.php" method="GET">
+                <button type="submit" class="btn btn-info m-2 align-items-center">Asignar a un curso
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                    </svg>
+                </button>
+            </form> 
+
         </div>
         <div class="table-responsive">
             <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -164,29 +183,28 @@ include "conexion/conex.php";
     </div>
 </div>
 <!-- FIN ENCUESTA -->
-<script type="text/javascript">
-    jQuery(document).ready(function($){
-         buscar_encuesta();
 
-         ('#encuesta').change(function{
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        buscar_encuesta();
+
+        ('#encuesta').change(function() {
             buscar_encuesta();
-         })
+        })
     });
 </script>
 
 <script type="text/javascript">
-    $function buscar_encuesta()
-    {
-        
+    $(function buscar_encuesta() {
         $.ajax({
-        data: "encuesta=" + $('#encuesta').val(),
-        url: 'back/buscar_encuesta.php',
-        type: 'POST',
-        success: function(mensaje){
-          $("respuesta").html(mensaje);
-        }
-      });
-    }
+            data: "encuesta=" + $('#encuesta').val(),
+            url: 'back/buscar_encuesta.php',
+            type: 'POST',
+            success: function(mensaje) {
+                $("respuesta").html(mensaje);
+            }
+        });
+    });
 </script>
 
 
