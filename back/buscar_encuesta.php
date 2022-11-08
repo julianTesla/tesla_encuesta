@@ -7,7 +7,8 @@ $grupo_id = $_POST['encuestas'];
 $sql =  "SELECT id_pregunta, nombre_pregunta, tipo, nombre_encuesta 
         FROM `preguntas`, tipos_preguntas,encuestas WHERE preguntas.encuesta_id = '$grupo_id' 
         AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta AND encuestas.id_encuesta = '$grupo_id' ";
-       $resultado  = mysqli_query($conex, $sql);
+
+$resultado  = mysqli_query($conex, $sql);
 
 $respuesta= '';
 if(mysqli_num_rows($resultado)>0)
@@ -24,10 +25,10 @@ if(mysqli_num_rows($resultado)>0)
     $respuesta=$respuesta.'<div class="container-fluid pt-4 px-4" >
                     <div class="bg-secondary text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">';
-                           
+                            
                             while($row2= mysqli_fetch_array($resultado2))
                             {
-                               $respuesta=$respuesta.'<h5 class="mb-0">'.$row2[0].'</h5>';
+                                $respuesta=$respuesta.'<h5 class="mb-0">'.$row2[0].'</h5>';
                             }
                             $respuesta= $respuesta.'
                             
@@ -61,22 +62,26 @@ if(mysqli_num_rows($resultado)>0)
                                         <th scope="col">Corregir pregunta</th>
                                     </tr>
                                 </thead>';
+                                $contador=1;
+
                                 while($row= mysqli_fetch_array($resultado))
                                     {
-                        $respuesta= $respuesta.'<tbody>
+                                $respuesta = $respuesta.'<tbody>
                                     <tr>
                                         <td>'.$row[1].'</td>
                                         <td>'.$row[2].'</td>
                                         <td>';
                                         while($row3= mysqli_fetch_array($resultado3))
                                         {
+                                            
                                             if($row3[1] != $row[0])
                                             {
                                                 break 1;
                                             }
                                             else
                                             {
-                                                $respuesta=$respuesta.'_'.$row3[0].'<br>';
+                                                $respuesta=$respuesta.$contador.'-'.$row3[0].'<br>';
+                                                $contador = 1+$contador;
                                             }
                                         }
                                         $respuesta=$respuesta.'</td>
@@ -94,10 +99,10 @@ if(mysqli_num_rows($resultado)>0)
 
 echo $respuesta;    
 }
-else
-{
-    echo "Sin resultados";
-}
+// else
+// {
+//     echo "Sin resultados";
+// }
 
 
 
