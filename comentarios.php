@@ -11,18 +11,28 @@ include "conexion/conex.php";
             <form action="">
                 <label>Seleccionar curso</label>
                 <select class="form-select">
-                    <option value="1">Electricista</option>
-                    <option value="2">Aire</option>
-                    <option value="3">Excel</option>
+                    <?php
+                    $sql= "SELECT id_curso, nombre_curso FROM cursos ";
+                    $resultado= mysqli_query($conex, $sql);
+                    while($row= mysqli_fetch_array($resultado))
+                    {
+                        echo '<option value="'.$row[0].'">'.$row[1].'</option>';
+                    }
+                    ?> 
                 </select>
             </form>
 
             <form action="">
                 <label>Seleccionar encuesta</label>
                 <select class="form-select">
-                    <option value="1">Encuesta 1</option>
-                    <option value="2">Encuesta 2</option>
-                    <option value="3">Encuesta 3</option>
+                <?php
+                    $sql1= "SELECT id_encuesta, nombre_encuesta FROM encuestas ";
+                    $resultado1= mysqli_query($conex, $sql1);
+                    while($row1= mysqli_fetch_array($resultado1))
+                    {
+                        echo '<option value="'.$row1[0].'">'.$row1[1].'</option>';
+                    }
+                    ?> 
                 </select>
             </form>
 
