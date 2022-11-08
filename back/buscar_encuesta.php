@@ -4,32 +4,28 @@ include "../conexion/conex.php";
 $grupo_id = $_POST['encuestas'];
 
 //Devolver los datos solicitados 
-$sql =  "SELECT id_pregunta, nombre_pregunta, tipo, nombre_encuesta 
-        FROM `preguntas`, tipos_preguntas,encuestas WHERE preguntas.encuesta_id = '$grupo_id' 
-        AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta AND encuestas.id_encuesta = '$grupo_id' ";
-
+$sql =  "SELECT id_encuesta, nombre_encuesta FROM encuestas WHERE encuestas.id_encuesta = '$grupo_id' ";
 $resultado  = mysqli_query($conex, $sql);
 
 $respuesta= '';
 if(mysqli_num_rows($resultado)>0)
 {
-    $sql2= "SELECT nombre_encuesta FROM encuestas WHERE encuestas.id_encuesta = '$grupo_id'";
+    
+    while($row= mysqli_fetch_array($resultado))
+    {
+        $sql2= "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo 
+    FROM encuestas,preguntas,tipos_preguntas WHERE encuestas.id_encuesta = '$grupo_id' 
+    AND encuestas.id_encuesta = preguntas.encuesta_id 
+    AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta";
     $resultado2= mysqli_Query($conex,$sql2);
 
-    //////////////////////////////////////////
-    $sql3="SELECT descripcion, pregunta_id FROM opciones, preguntas, encuestas, tipos_preguntas 
-    WHERE preguntas.encuesta_id = $grupo_id AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
-    AND encuestas.id_encuesta = $grupo_id AND opciones.pregunta_id = preguntas.id_pregunta";
-    $resultado3= mysqli_Query($conex, $sql3);
-
-    $respuesta=$respuesta.'<div class="container-fluid pt-4 px-4" >
+          $respuesta=$respuesta.'<div class="container-fluid pt-4 px-4" >
                     <div class="bg-secondary text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">';
                             
-                            while($row2= mysqli_fetch_array($resultado2))
-                            {
-                                $respuesta=$respuesta.'<h5 class="mb-0">'.$row2[0].'</h5>';
-                            }
+                            
+                                $respuesta=$respuesta.'<h5 class="mb-0">'.$row[1].'</h5>';
+                            
                             $respuesta= $respuesta.'
                             
                             <!-- BOTON EDITAR ENCUESTA 
@@ -62,30 +58,37 @@ if(mysqli_num_rows($resultado)>0)
                                         <th scope="col">Corregir pregunta</th>
                                     </tr>
                                 </thead>';
-                                $contador=1;
 
-                                while($row= mysqli_fetch_array($resultado))
+                                while($row2= mysqli_fetch_array($resultado2))
                                     {
-                                $respuesta = $respuesta.'<tbody>
-                                    <tr>
-                                        <td>'.$row[1].'</td>
-                                        <td>'.$row[2].'</td>
-                                        <td>';
-                                        while($row3= mysqli_fetch_array($resultado3))
+                                        if($row[0] == $row2[0])
                                         {
-                                            
-                                            if($row3[1] != $row[0])
+                                            $contador=1;
+                                            $respuesta = $respuesta.'<tbody>
+                                                <tr>
+                                                    <td>'.$row2[2].'</td>
+                                                    <td>'.$row2[3].'</td>
+                                                    <td>';
+                                              
+                                            $sql3="SELECT pregunta_id, descripcion 
+                                            FROM preguntas, tipos_preguntas,encuestas,opciones 
+                                            WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
+                                            AND encuestas.id_encuesta = preguntas.encuesta_id 
+                                            AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
+                                            $resultado3= mysqli_query($conex,$sql3);        
+                                            while($row3= mysqli_fetch_array($resultado3))
                                             {
-                                                break 1;
+                                                
+                                                if($row2[1] == $row3[0])
+                                                {
+                                                    $respuesta=$respuesta.$contador.'-'.$row3[1].'<br>';
+                                                    $contador = 1+$contador;
+                                                }
+                                                
                                             }
-                                            else
-                                            {
-                                                $respuesta=$respuesta.$contador.'-'.$row3[0].'<br>';
-                                                $contador = 1+$contador;
-                                            }
+                                            $respuesta=$respuesta.'</td>';
                                         }
-                                        $respuesta=$respuesta.'</td>
-                                        <td><button type="submit" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        $respuesta=$respuesta.'<td><button type="submit" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                                 </svg></td>
@@ -96,6 +99,7 @@ if(mysqli_num_rows($resultado)>0)
                         </div>
                     </div>
                 </div>';
+    }
 
 echo $respuesta;    
 }

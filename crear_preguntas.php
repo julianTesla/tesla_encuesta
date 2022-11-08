@@ -78,20 +78,18 @@ $nombre_encuesta= $row[0];
 
 <?php
 // TRAEMOS LOS DATOS DE LAS PREGUNTAS CREADAS 
- $sql= "SELECT id_pregunta, nombre_pregunta, tipo, nombre_encuesta 
- FROM `preguntas`, tipos_preguntas,encuestas 
- WHERE preguntas.encuesta_id = '$grupo_id' AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta
- AND encuestas.id_encuesta = '$grupo_id' ";
+ $sql= "SELECT id_encuesta, nombre_encuesta FROM encuestas WHERE encuestas.id_encuesta = '$grupo_id' ";
  $resultado= mysqli_Query($conex,$sql);
-
-///////////////////////////////////////////
- $sql2= "SELECT descripcion, pregunta_id FROM opciones, preguntas, encuestas, tipos_preguntas 
- WHERE preguntas.encuesta_id = '$grupo_id' AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
- AND encuestas.id_encuesta = '$grupo_id' AND opciones.pregunta_id = preguntas.id_pregunta";
- $resultado2= mysqli_Query($conex, $sql2);
 
  if(mysqli_num_rows($resultado)>0)
 {
+    while($row= mysqli_fetch_array($resultado))
+    {
+    $sql2= "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo 
+    FROM encuestas,preguntas,tipos_preguntas WHERE encuestas.id_encuesta = '$grupo_id' 
+    AND encuestas.id_encuesta = preguntas.encuesta_id 
+    AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta";
+    $resultado2= mysqli_Query($conex,$sql2);
 ?>
                     <!--Inicio de tabla-->
                     <div class="col-sm-12 col-xl-6">
@@ -107,31 +105,38 @@ $nombre_encuesta= $row[0];
                                     </tr>
                                 </thead>
                                 <?php
-                                while($row= mysqli_fetch_array($resultado))
+                                while($row2= mysqli_fetch_array($resultado2))
                                     {
-                                        $valor= $row[0];
+                                        if($row[0] == $row2[0])
+                                        {
+                                            $contador= 1;
                                 ?>
                                 <tbody>
                                     <tr>
                                         <?php
-                                       echo  '<td>'.$row[0].'</td>';
-                                        echo '<td>'.$row[1].'</td>';
-                                        echo '<td>'.$row[2].'</td>';
+                                       echo  '<td>'.$row2[1].'</td>';
+                                        echo '<td>'.$row2[2].'</td>';
+                                        echo '<td>'.$row2[3].'</td>';
                                         echo '<td>';
-                                             while($row2= mysqli_fetch_array($resultado2))
+                                        $sql3="SELECT pregunta_id, descripcion 
+                                            FROM preguntas, tipos_preguntas,encuestas,opciones 
+                                            WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
+                                            AND encuestas.id_encuesta = preguntas.encuesta_id 
+                                            AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
+                                            $resultado3= mysqli_query($conex,$sql3);
+                                             while($row3= mysqli_fetch_array($resultado3))
                                              {
                                                 
-                                                if($valor == $row2[1])
+                                                if($row2[1] == $row3[0])
                                                 {
-                                                    echo  $row2[0];
-                                                    echo '<br>';
+                                                    echo $contador.'-'.$row3[1].'<br>';
+                                                    $contador++;
+
                                                 }
-                                                else
-                                                {
-                                                    break 1;
-                                                }
+                                               
                                              }
                                         echo '</td>';
+                                            }
                                     }
                                     ?>
                                     </tr>
@@ -140,7 +145,8 @@ $nombre_encuesta= $row[0];
                         </div>
                     </div>
                     <!--Fin de tabla-->
-<?php                    
+<?php 
+    }                   
 }
 ?>
                 </div>

@@ -45,18 +45,21 @@ include "conexion/conex.php";
 <div id="respuesta"></div>
 
 <?php
-$sql2= "SELECT nombre_encuesta, nombre_pregunta, tipo 
-FROM encuestas,preguntas, tipos_preguntas, opciones WHERE encuestas.id_encuesta = preguntas.encuesta_id 
-AND preguntas.id_pregunta = opciones.pregunta_id AND tipos_preguntas.id_tipo_pregunta = preguntas.tipo_pregunta_id";
+$sql2= "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY id_encuesta DESC ";
 $resultado2= mysqli_Query($conex,$sql2);
+
 while($row2= mysqli_fetch_array($resultado2))
 { 
+    $sql3= "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo 
+    FROM preguntas, tipos_preguntas,encuestas WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
+    AND encuestas.id_encuesta = preguntas.encuesta_id ORDER BY id_pregunta";
+    $resultado3= mysqli_Query($conex,$sql3);
 ?>
 <!-- INICIO ENCUESTA -->
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h5 class="mb-0"><?php echo $row2[0]; ?></h5>
+            <h5 class="mb-0"><?php echo $row2[1]; ?></h5>
             
             <!-- BOTON EDITAR ENCUESTA 
             <form action="/" method="GET">
@@ -89,18 +92,40 @@ while($row2= mysqli_fetch_array($resultado2))
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><?php echo $row2[1]; ?></td>
-                        <td><?php echo $row2[2]; ?></td>
-                        <td>1- Opcion a<br>
-                            2- Opcion b<br>
-                            3- Opcion c</td>
+                    <?php
+                     while($row3= mysqli_fetch_array($resultado3))
+                     {
+                        if($row2[0] == $row3[0])
+                        {
+                            $contador= 1;
+                            $sql4= "SELECT pregunta_id, descripcion 
+                            FROM preguntas, tipos_preguntas,encuestas,opciones 
+                            WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
+                            AND encuestas.id_encuesta = preguntas.encuesta_id 
+                            AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
+                            $resultado4= mysqli_Query($conex, $sql4);
+                      echo  '<tr>
+                        <td>'.$row3[2].'</td>
+                        <td>'.$row3[3].'</td>
+                        <td>';
+                        while($row4= mysqli_fetch_array($resultado4))
+                        {
+                            if($row4[0] == $row3[1])
+                            {
+                                echo $contador.'-'.$row4[1].'<br>';
+                                $contador++;
+                            }
+                        }
+                            
+                          echo  '</td>
                         <td><button type="submit" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                 </svg></td>
-                    </tr>
-                    
+                    </tr>';
+                        }
+                     }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -110,7 +135,6 @@ while($row2= mysqli_fetch_array($resultado2))
 <?php
 }
 ?>
-
 
 <script type="text/javascript">
 

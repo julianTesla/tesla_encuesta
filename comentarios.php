@@ -1,5 +1,6 @@
 <?php
 include "parte_superior.php";
+include "conexion/conex.php";
 ?>
 
 <!-- INICIO BARRA DE FILTRO -->
@@ -32,6 +33,9 @@ include "parte_superior.php";
             <div class="form-item">
                 <label>Fecha hasta</label>
                 <input class="input-sm form-control" type=date style="background-color:red; color:white" />
+            </div>
+            <div class="form-item">
+                <button class="btn btn-primary m-2" style="height: 2.7rem;"> Buscar </button>
             </div>
 
         </div>
