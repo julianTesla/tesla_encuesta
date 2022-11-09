@@ -10,13 +10,16 @@ $contraseña=$_POST['contraseña'];
 if($usuario == 'admin' && $contraseña == 'admin'){
   session_start();
   //setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-  header("Location:http://127.0.0.1/tesla_encuesta/resultados.php", TRUE, 301);
   $_SESSION["usuario"] = $usuario;
-
+echo '<script type="text/javascript">
+window.location="../resultados.php";
+</script>';
 
 }else{
   $error = "incorrecto";
-  header("Location:login.php?error=$error");
+  echo '<script type="text/javascript">
+window.location="../index.php?error='.$error.'";
+</script>';
 }
 
 ?>

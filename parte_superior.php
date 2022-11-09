@@ -1,3 +1,13 @@
+<?php        
+session_start();
+if($_SESSION['usuario'] == false)
+{
+    echo '<script type="text/javascript">
+    window.location="index.php";
+    </script>';
+  die();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
