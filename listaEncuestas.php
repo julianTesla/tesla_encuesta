@@ -17,7 +17,7 @@ include "conexion/conex.php";
                 </select>
             </form>-->
 
-                <select name="encuesta" class="form-select m-4" id="buscar_encuesta" onchange= "buscar_encuesta();">
+                <select style="color: #191C24; width: 100%;" name="encuesta" class="js-example-basic-single" id="buscar_encuesta" onchange= "buscar_encuesta();" data-show-subtext="true" data-live-search="true">
                     <option value="0">Seleccionar encuesta</option>
                     <?php
                     //TRAEMOS LAS ENCUESTAS DISPONIBLES DE LA BASE DE DATOS
@@ -110,6 +110,7 @@ while($row2= mysqli_fetch_array($resultado2))
                         <td>';
                         while($row4= mysqli_fetch_array($resultado4))
                         {
+                            $id_pregunta=$row4[0];
                             if($row4[0] == $row3[1])
                             {
                                 echo $contador.'-'.$row4[1].'<br>';
@@ -118,10 +119,8 @@ while($row2= mysqli_fetch_array($resultado2))
                         }
                             
                           echo  '</td>
-                        <td><button type="submit" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                </svg></td>
+                        <td>
+                        <a href="modificar_preguntas.php?id_encuesta='.$row2[0].'&id_pregunta='.$row3[1].'" class="btn btn-success m-2">Editar pregunta</a> </td>
                     </tr>';
                         }
                      }
@@ -136,8 +135,14 @@ while($row2= mysqli_fetch_array($resultado2))
 }
 ?>
 
-<script type="text/javascript">
+<script>
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
 
+<script type="text/javascript">
+//script para hacer el buscado de encuestas
     function buscar_encuesta() {
         $.ajax({
             type: 'POST',
