@@ -81,7 +81,7 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <div class="navbar-nav align-items-center ms-auto">
-                    <a href="./login/login.php" class="btn btn-outline-primary m-2">Cerrar sesión</a>
+                    <a href="/tesla_encuesta/login/cerrar.php?cerrar=yes" class="btn btn-outline-primary m-2">Cerrar sesión</a>
                 </div>
             </nav>
             <!-- Navbar End -->
