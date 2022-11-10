@@ -15,6 +15,7 @@ while ($row = mysqli_fetch_array($resultado)) {
     <!-- Form Start -->
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
+            
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-secondary rounded h-100 p-4">
                     <form action="back/guardar_pregunta.php" method="POST">

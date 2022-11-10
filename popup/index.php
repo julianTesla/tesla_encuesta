@@ -34,7 +34,7 @@ include('C:\xampp\htdocs\tesla_encuesta\conexion\conex.php');
 
 
                     //sentencias SQL
-                    $sql = "SELECT * FROM preguntas ";
+                    $sql = "SELECT * FROM preguntas";
 
 
                     $result = mysqli_query($conex, $sql);

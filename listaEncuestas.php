@@ -6,9 +6,9 @@ include "conexion/conex.php";
 
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary text-center rounded p-2">
-        <div class="d-flex align-items-center justify-content-around">
+        <div class="d-flex align-items-center justify-content-around m-2">
 
-            <!-- SELECTOR ENCUESTA -->
+            <!-- SELECTOR Y BUSCADOR ENCUESTA -->
 
             <!-- SELECTOR HARCODEADO -->
             <!-- <form action="/" method="POST">
@@ -17,17 +17,17 @@ include "conexion/conex.php";
                 </select>
             </form>-->
 
-                <select style="color: #191C24; width: 100%;" name="encuesta" class="js-example-basic-single" id="buscar_encuesta" onchange= "buscar_encuesta();" data-show-subtext="true" data-live-search="true">
-                    <option value="0">Seleccionar encuesta</option>
-                    <?php
-                    //TRAEMOS LAS ENCUESTAS DISPONIBLES DE LA BASE DE DATOS
-                    $sql = "SELECT id_encuesta, nombre_encuesta FROM encuestas";
-                    $resultado = mysqli_Query($conex, $sql);
-                    while ($row = mysqli_fetch_array($resultado)) {
-                        echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
-                    }
-                    ?>
-                </select>
+            <select style="width: 80%;" name="encuesta" class="js-example-basic-single" id="buscar_encuesta" onchange="buscar_encuesta();" data-show-subtext="true" data-live-search="true">
+                <option value="0">Seleccionar encuesta</option>
+                <?php
+                //TRAEMOS LAS ENCUESTAS DISPONIBLES DE LA BASE DE DATOS
+                $sql = "SELECT id_encuesta, nombre_encuesta FROM encuestas";
+                $resultado = mysqli_Query($conex, $sql);
+                while ($row = mysqli_fetch_array($resultado)) {
+                    echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
+                }
+                ?>
+            </select>
             <!-- FIN SELECTOR ENCUESTA -->
 
 
@@ -45,23 +45,22 @@ include "conexion/conex.php";
 <div id="respuesta"></div>
 
 <?php
-$sql2= "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY id_encuesta DESC ";
-$resultado2= mysqli_Query($conex,$sql2);
+$sql2 = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY id_encuesta DESC ";
+$resultado2 = mysqli_Query($conex, $sql2);
 
-while($row2= mysqli_fetch_array($resultado2))
-{ 
-    $sql3= "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo 
+while ($row2 = mysqli_fetch_array($resultado2)) {
+    $sql3 = "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo 
     FROM preguntas, tipos_preguntas,encuestas WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
     AND encuestas.id_encuesta = preguntas.encuesta_id ORDER BY id_pregunta";
-    $resultado3= mysqli_Query($conex,$sql3);
+    $resultado3 = mysqli_Query($conex, $sql3);
 ?>
-<!-- INICIO ENCUESTA -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary text-center rounded p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
-            <h5 class="mb-0"><?php echo $row2[1]; ?></h5>
-            
-            <!-- BOTON EDITAR ENCUESTA 
+    <!-- INICIO ENCUESTA -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-secondary text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h5 class="mb-0"><?php echo $row2[1]; ?></h5>
+
+                <!-- BOTON EDITAR ENCUESTA 
             <form action="/" method="GET">
                 <button type="submit" class="btn btn-success">Editar encuesta <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z" />
@@ -71,78 +70,76 @@ while($row2= mysqli_fetch_array($resultado2))
                 </button>
             </form> -->
 
-             <!-- BOTON ASIGNAR ENCUESTA -->
-             <form action="./asignarEncuesta.php" method="GET">
-                <button type="submit" class="btn btn-info m-2 align-items-center">Asignar a un curso
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                    </svg>
-                </button>
-            </form> 
+                <!-- BOTON ASIGNAR ENCUESTA -->
+                <form action="./asignarEncuesta.php" method="GET">
+                    <button type="submit" class="btn btn-info m-2 align-items-center">Asignar a un curso
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                        </svg>
+                    </button>
+                </form>
 
-        </div>
-        <div class="table-responsive">
-            <table class="table text-start align-middle table-bordered table-hover mb-0">
-                <thead>
-                    <tr class="text-white">
-                        <th scope="col">Pregunta</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Respuestas</th>
-                        <th scope="col">Corregir pregunta</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                     while($row3= mysqli_fetch_array($resultado3))
-                     {
-                        if($row2[0] == $row3[0])
-                        {
-                            $contador= 1;
-                            $sql4= "SELECT pregunta_id, descripcion 
+            </div>
+            <div class="table-responsive">
+                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <thead>
+                        <tr class="text-white">
+                            <th scope="col">Pregunta</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Respuestas</th>
+                            <th scope="col">Corregir pregunta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        while ($row3 = mysqli_fetch_array($resultado3)) {
+                            if ($row2[0] == $row3[0]) {
+                                $contador = 1;
+                                $sql4 = "SELECT pregunta_id, descripcion 
                             FROM preguntas, tipos_preguntas,encuestas,opciones 
                             WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
                             AND encuestas.id_encuesta = preguntas.encuesta_id 
                             AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
-                            $resultado4= mysqli_Query($conex, $sql4);
-                      echo  '<tr>
-                        <td>'.$row3[2].'</td>
-                        <td>'.$row3[3].'</td>
+                                $resultado4 = mysqli_Query($conex, $sql4);
+                                echo  '<tr>
+                        <td>' . $row3[2] . '</td>
+                        <td>' . $row3[3] . '</td>
                         <td>';
-                        while($row4= mysqli_fetch_array($resultado4))
-                        {
-                            $id_pregunta=$row4[0];
-                            if($row4[0] == $row3[1])
-                            {
-                                echo $contador.'-'.$row4[1].'<br>';
-                                $contador++;
+                                while ($row4 = mysqli_fetch_array($resultado4)) {
+                                    $id_pregunta = $row4[0];
+                                    if ($row4[0] == $row3[1]) {
+                                        echo $contador . '-' . $row4[1] . '<br>';
+                                        $contador++;
+                                    }
+                                }
+
+                                echo  '</td>
+                        <td>
+                        <a href="modificar_preguntas.php?id_encuesta=' . $row2[0] . '&id_pregunta=' . $row3[1] . '" class="btn btn-success m-2">Editar pregunta</a> </td>
+                    </tr>';
                             }
                         }
-                            
-                          echo  '</td>
-                        <td>
-                        <a href="modificar_preguntas.php?id_encuesta='.$row2[0].'&id_pregunta='.$row3[1].'" class="btn btn-success m-2">Editar pregunta</a> </td>
-                    </tr>';
-                        }
-                     }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-<!-- FIN ENCUESTA -->
+    <!-- FIN ENCUESTA -->
 <?php
 }
 ?>
 
 <script>
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2({
+            style:'form-control'
+        });
+    });
 </script>
 
 <script type="text/javascript">
-//script para hacer el buscado de encuestas
+    //script para hacer el buscado de encuestas
     function buscar_encuesta() {
         $.ajax({
             type: 'POST',
