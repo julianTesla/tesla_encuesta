@@ -2,7 +2,7 @@
 include "../conexion/conex.php";
 
 $id_pregunta= $_POST['id_pregunta'];
-$nombre_pregunta=['nombre_pregunta'];
+$nombre_pregunta= $_POST['nombre_pregunta'];
 $id_opcion1= $_POST['id_opcion1'];
 $id_opcion2= $_POST['id_opcion2'];
 $id_opcion3= $_POST['id_opcion3'];
