@@ -43,7 +43,7 @@ include "conexion/conex.php";
                     <p class="text-warning bg-dark" style="text-align: center">
                         Una vez agregada encuesta al Aula Virtual presione
                         el siguiente botón para registrar envío:</p>
-                    <button class="btn btn-primary w-100" onclick="enviar_encuesta();">Asignar encuesta</button>
+                    <button class="btn btn-primary w-100 mb-3" onclick="enviar_encuesta();">Asignar encuesta</button>
                 </form>
                 <div id="respuesta"></div>
 

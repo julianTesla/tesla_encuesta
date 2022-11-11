@@ -6,9 +6,9 @@ $curso_id = $_POST['curso_id'];
 
 if ($encuesta_id == 0 || $curso_id == 0) {
     echo '<div class="alert alert-primary alert-dismissible fade show" role="alert"><i class="fa fa-exclamation-circle me-2"></i>
-¡Debe seleccionar las opciones!
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
+    ¡Debe seleccionar las opciones!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
     die();
 }
 
@@ -21,4 +21,3 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
 </div>';
 
 mysqli_close($conex);
-?>
