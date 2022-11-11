@@ -42,8 +42,6 @@ include "conexion/conex.php";
     </div>
 </div>
 
-<div id="respuesta"></div>
-
 <?php
 $sql2 = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY id_encuesta DESC ";
 $resultado2 = mysqli_Query($conex, $sql2);
@@ -55,6 +53,7 @@ while ($row2 = mysqli_fetch_array($resultado2)) {
     $resultado3 = mysqli_Query($conex, $sql3);
 ?>
     <!-- INICIO ENCUESTA -->
+<div id="respuesta"></div>
     <div class="container-fluid pt-4 px-4">
         <div class="bg-secondary text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -140,6 +139,7 @@ while ($row2 = mysqli_fetch_array($resultado2)) {
         $('.js-example-basic-single').select2({
             style:'form-control'
         });
+        $(".js-example-basic-single").select2({ width: "60%" });
     });
 </script>
 

@@ -53,7 +53,7 @@ while ($row = mysqli_fetch_array($resultado))
                                     AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
                                     $resultado2= mysqli_query($conex,$sql2);
                                    
-                                    echo '<input class="form-check-input" type="radio" name="tipo_pregunta" id="gridRadios1" value="1" checked onclick="mostrar_checkbox();" style="position: absolute; visibility: hidden;">
+                                    echo '<input class="form-check-input" type="radio" name="tipo_pregunta" id="gridRadios1" value="1" checked  style="position: absolute; visibility: hidden;">
                                     <div class="form-chek">';
                                     $cont= 1;
                                     while($row2= mysqli_fetch_array($resultado2))
@@ -69,18 +69,20 @@ while ($row = mysqli_fetch_array($resultado))
                                 }
                                 elseif($tipo_pregunta_id == 2)
                                 {
-                                    $sql2="SELECT pregunta_id, descripcion FROM preguntas, tipos_preguntas,encuestas,opciones 
+                                    $sql2="SELECT pregunta_id, descripcion, id_opciones 
+                                    FROM preguntas, tipos_preguntas,encuestas,opciones 
                                     WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
                                     AND encuestas.id_encuesta = preguntas.encuesta_id AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
                                     $resultado2= mysqli_query($conex,$sql2);
 
-                                    echo '<input class="form-check-input" type="radio" name="tipo_pregunta" id="gridRadios1" value="2" onclick="mostrar_texto();" style="position: absolute; visibility: hidden;">
+                                    echo '<input class="form-check-input" type="radio" name="tipo_pregunta" id="gridRadios1" value="2" checked  style="position: absolute; visibility: hidden;">
                                     <div class="form-chek">';
                                     while($row2= mysqli_fetch_array($resultado2))
                                     {
                                         if($id_pregunta == $row2[0])
                                         {
-                                      echo  '<textarea class="form-control" name="descripcion_texto" id="floatingTextarea" cols="30" rows="13" placeholder="Ingrese la marca de agua a mostrar">'.$row2[1].'</textarea>';
+                                      echo  '<textarea class="form-control" name="descripcion_texto" id="floatingTextarea" cols="30" rows="8" placeholder="Ingrese la marca de agua a mostrar">'.$row2[1].'</textarea>
+                                      <input style="position: absolute; visibility: hidden;" type="int" name="id_texto" value="'.$row2[2].'">';
                                         }
                                     }
                                         echo '</div>';
@@ -89,10 +91,10 @@ while ($row = mysqli_fetch_array($resultado))
                             </div>
                         </fieldset>
 
-                        <button class="btn btn-success" type="submit">Guadar pregunta</button>
+                        <button class="btn btn-success" type="submit">Guadar Modificar</button>
                     </form>
                     <br>
-                    <a href="resultados.php" class="btn btn-outline-primary w-100 m-2">Finalizar</a>
+                    <a href="listaEncuestas.php" class="btn btn-outline-primary w-100 m-2">Cancelar</a>
                 </div>
             </div>
         </div>
