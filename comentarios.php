@@ -1,6 +1,12 @@
 <?php
 include "parte_superior.php";
 include "conexion/conex.php";
+
+$sql= "SELECT id_curso, nombre_curso FROM cursos ";
+$resultado= mysqli_query($conex, $sql);
+
+$sql1= "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC";
+$resultado1= mysqli_query($conex,$sql1);
 ?>
 
 <!-- INICIO BARRA DE FILTRO -->
@@ -9,10 +15,10 @@ include "conexion/conex.php";
         <div class="d-flex align-items-center justify-content-between mb-4">
 
             <form action="">
-                <label>Seleccionar curso</label>
-                <select class="form-select">
+                <select class="form-select js-example-basic-single" style="width: 110%;">
+                <option value="0">Seleccionar curso</option>
                     <?php
-                    $sql= "SELECT id_curso, nombre_curso FROM cursos ";
+                    $sql= "SELECT id_curso, nombre_curso FROM cursos ORDER BY cursos.id_curso DESC";
                     $resultado= mysqli_query($conex, $sql);
                     while($row= mysqli_fetch_array($resultado))
                     {
@@ -23,10 +29,10 @@ include "conexion/conex.php";
             </form>
 
             <form action="">
-                <label>Seleccionar encuesta</label>
-                <select class="form-select">
+                <select class="form-select js-example-basic-single" style="width: 110%;">
+                <option value="0">Seleccionar encuesta</option>
                 <?php
-                    $sql1= "SELECT id_encuesta, nombre_encuesta FROM encuestas ";
+                    $sql1= "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC ";
                     $resultado1= mysqli_query($conex, $sql1);
                     while($row1= mysqli_fetch_array($resultado1))
                     {
@@ -196,11 +202,14 @@ include "conexion/conex.php";
     </div>
 </div>
 <!-- FIN COMENTARIO -->
-
-
-
-
-
+  
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2({
+            style:'form-control'
+        });
+    });
+</script>
 
 <?php
 include "parte_inferior.php";

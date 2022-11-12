@@ -1,5 +1,12 @@
 <?php
 include "parte_superior.php";
+include "conexion/conex.php";
+
+$sql= "SELECT id_curso, nombre_curso FROM cursos ";
+$resultado= mysqli_query($conex, $sql);
+
+$sql1= "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC";
+$resultado1= mysqli_query($conex,$sql1);
 ?>
 
 <!-- INICIO BARRA DE FILTRO -->
@@ -9,31 +16,41 @@ include "parte_superior.php";
         <div class="d-flex align-items-center justify-content-between mb-4">
 
             <form action="">
-                <label>Seleccionar curso</label>
-                <select class="form-select">
-                    <option value="1">Electricista</option>
-                    <option value="2">Aire</option>
-                    <option value="3">Excel</option>
+                <!-- <label>Seleccionar curso</label> -->
+                <select class="form-select js-example-basic-single" style="width: 110%;">
+                    <option value="0">Seleccionar curso</option>
+                    <?php
+                    while($row= mysqli_fetch_array($resultado))
+                    {
+                        echo '<option value="'.$row[0].'">'.$row[1].'</option>';
+                    }
+                    ?>
                 </select>
             </form>
 
             <form action="">
-                <label>Seleccionar encuesta</label>
-                <select class="form-select">
-                    <option value="1">Encuesta 1</option>
-                    <option value="2">Encuesta 2</option>
-                    <option value="3">Encuesta 3</option>
+                <!-- <label>Seleccionar encuesta</label> -->
+                <select class="form-select js-example-basic-single" style="width: 110%;">
+                    <option value="0">Seleccionar encuesta</option>
+                    <?php
+                    while($row1= mysqli_fetch_array($resultado1))
+                    {
+                        echo '<option value="'.$row1[0].'">'.$row1[1].'</option>';
+                    }
+                    ?>
                 </select>
             </form>
 
             <div class="form-item">
                 <label>Fecha desde</label>
-                <input class="input-sm form-control" type=date style="background-color:red; color:white" />
+                <input class="input-sm form-control" type=date style="background-color:red; color:white">
             </div>
             <div class="form-item">
                 <label>Fecha hasta</label>
-                <input class="input-sm form-control" type=date style="background-color:red; color:white" />
+                <input class="input-sm form-control" type=date style="background-color:red; color:white">
             </div>
+
+            <button class="btn btn-primary m-2">Buscar</button>
 
         </div>
     </div>
@@ -380,6 +397,13 @@ include "parte_superior.php";
 </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2({
+            style:'form-control'
+        });
+    });
+</script>
 <?php
 include "parte_inferior.php";
 ?>

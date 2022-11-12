@@ -17,11 +17,11 @@ include "conexion/conex.php";
                 </select>
             </form>-->
 
-            <select style="width: 80%;" name="encuesta" class="js-example-basic-single" id="buscar_encuesta" onchange="buscar_encuesta();" data-show-subtext="true" data-live-search="true">
+            <select style="width: 70%;" name="encuesta" class="js-example-basic-single" id="buscar_encuesta" onchange="buscar_encuesta();" data-show-subtext="true" data-live-search="true">
                 <option value="0">Seleccionar encuesta</option>
                 <?php
                 //TRAEMOS LAS ENCUESTAS DISPONIBLES DE LA BASE DE DATOS
-                $sql = "SELECT id_encuesta, nombre_encuesta FROM encuestas";
+                $sql = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC";
                 $resultado = mysqli_Query($conex, $sql);
                 while ($row = mysqli_fetch_array($resultado)) {
                     echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
@@ -42,6 +42,8 @@ include "conexion/conex.php";
     </div>
 </div>
 
+<div id="respuesta">
+
 <?php
 $sql2 = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY id_encuesta DESC ";
 $resultado2 = mysqli_Query($conex, $sql2);
@@ -53,7 +55,6 @@ while ($row2 = mysqli_fetch_array($resultado2)) {
     $resultado3 = mysqli_Query($conex, $sql3);
 ?>
     <!-- INICIO ENCUESTA -->
-<div id="respuesta"></div>
     <div class="container-fluid pt-4 px-4">
         <div class="bg-secondary text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -133,13 +134,12 @@ while ($row2 = mysqli_fetch_array($resultado2)) {
 <?php
 }
 ?>
-
+</div>
 <script>
     $(document).ready(function() {
         $('.js-example-basic-single').select2({
             style:'form-control'
         });
-        $(".js-example-basic-single").select2({ width: "60%" });
     });
 </script>
 
