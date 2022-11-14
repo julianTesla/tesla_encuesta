@@ -26,7 +26,7 @@
                  * Thanks to Amir-Hossein Sobhi for some excellent contributions!
                  */
 
-                 (function() {
+                (function() {
                     /*jshint eqeqeq:false curly:false latedef:false */
                     "use strict";
 
@@ -674,28 +674,26 @@
             return "";
         }
     </script>
-
 </p>
+
 <div id="pagopuntual" height="100%" width="100%" style="cursor: default; display: none; overflow-y: hidden;"><button type="button" class="close" aria-hidden="true" onclick="cerrar()" style="padding: 10; cursor: pointer; background: #000; border: 0; -webkit-appearance: none; float: right; color: #ffffff; font-size: 20px;">X</button>
 
 
     <form>
         <iframe style=" width: 100%; height: 400px;" src="https://juegotesla.000webhostapp.com/dash/formulario.php" frameborder="0"></iframe>
-        <button type="submit" onclick="coki();" class="btn btn-primary">Submit</button>
+        <button type="submit" onclick="coki();" class="btn btn-primary">Cerrar</button>
     </form>
 
     <script>
         function opo() {
-
-
-
         }
 
         function coki() {
             document.cookie = "popup=true;";
             cerrar();
-
         }
     </script>
-    <p dir="ltr" style="text-align: left;">descargue el apunte y responda el cuestionario</p>
+
+    <p dir="ltr" style="text-align: left;">.</p>
+
 </div>

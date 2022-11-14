@@ -17,8 +17,10 @@
 <body>
     <div class="mx-0 mx-sm-auto">
         <div class="card">
-            <div class="card-header" style="background-color:#bb0112">
-                <h5 class="card-title text-white mt-2 text-center" id="exampleModalLabel">Nombre_encuesta</h5>
+            <div class="card-header p-0" style="background-color:#303030" >
+                <h5 class="card-title text-white mt-2 text-center" id="exampleModalLabel">
+                    <img src="TESLA_LogoBlanco.png" class="logo m-2" style="width: 170px">
+                </h5>
             </div>
             <div class="modal-body">
                 <div class="text-center">
