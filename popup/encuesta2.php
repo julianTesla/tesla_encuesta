@@ -22,11 +22,11 @@
             </div>
             <div class="modal-body">
                 <div class="text-center">
-                    <i class="far fa-file-alt fa-4x mb-3 text-primary"></i>
-                    <p class="m-2">
-                        <strong>¡Tu opinion nos importa!</strong>
+                    <i class="far fa-file-alt fa-4x text-primary"></i>
+                    <p class="mt-2 p-2 m-0">
+                        <strong>¡Tu opinión nos importa!</strong>
                     </p>
-                    <p>
+                    <p class="p-2 m-0">
                         Te invitamos a responder una breve encuesta, te llevará menos de 1 minuto.
                     </p>
                 </div>
@@ -34,40 +34,40 @@
                 <hr/>
 
                 <form class="px-4" action="">
-                    <p class="text-center mb-2"><strong>Pregunta 1</strong></p>
+                    <p class="text-center mb-2"><strong>¿Como evaluarías al profesor?</strong></p>
 
-                    <div class="form-check d-flex justify-content-center mb-2">
-                        <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example1" />
-                        <label class="form-check-label" for="radio3Example1">
-                            Very good
+                    <div class="form-check d-flex justify-content-center p-0">
+                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example1" />
+                        <label class="form-check-label m-1" for="radio3Example1">
+                            Excelente
                         </label>
                     </div>
-                    <div class="form-check d-flex justify-content-center mb-2">
-                        <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example2" />
-                        <label class="form-check-label" for="radio3Example2">
-                            Good
+                    <div class="form-check d-flex justify-content-center p-0">
+                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example2" />
+                        <label class="form-check-label m-1" for="radio3Example2">
+                            Muy bueno
                         </label>
                     </div>
-                    <div class="form-check d-flex justify-content-center mb-2">
-                        <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example3" />
-                        <label class="form-check-label" for="radio3Example3">
-                            Medicore
+                    <div class="form-check d-flex justify-content-center p-0">
+                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example3" />
+                        <label class="form-check-label m-1" for="radio3Example3">
+                            Bueno
                         </label>
                     </div>
-                    <div class="form-check d-flex justify-content-center mb-2">
-                        <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example4" />
-                        <label class="form-check-label" for="radio3Example4">
-                            Bad
+                    <div class="form-check d-flex justify-content-center p-0">
+                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example4" />
+                        <label class="form-check-label m-1" for="radio3Example4">
+                            Regular
                         </label>
                     </div>
-                    <div class="form-check d-flex justify-content-center mb-2">
-                        <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example5" />
-                        <label class="form-check-label" for="radio3Example5">
-                            Very bad
+                    <div class="form-check d-flex justify-content-center p-0">
+                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example5" />
+                        <label class="form-check-label m-1" for="radio3Example5">
+                            Malo
                         </label>
                     </div>
 
-                    <p class="text-center"><strong>¿Te gustaria agregar algo más?</strong></p>
+                    <p class="text-center"><strong>¿Te gustaría agregar algo más?</strong></p>
 
                     <!-- Message input -->
                     <div class="form-outline mb-4">
@@ -76,8 +76,8 @@
                     </div>
                 </form>
             </div>
-            <div class="card-footer text-end">
-                <button type="button" class="btn" style="background-color:#bb0112; color:white">Enviar</button>
+            <div class="card-footer">
+                <button type="submit" class="btn w-100" style="background-color:#bb0112; color:white">Enviar</button>
             </div>
         </div>
     </div>
