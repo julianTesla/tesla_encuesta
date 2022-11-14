@@ -13,7 +13,7 @@ include "conexion/conex.php";
                     <h6 class="mb-3">Asignar encuesta</h6>
 
                     <!-- SELECT ENCUESTAS -->
-                    <select name="encuesta_id" class="form-select mb-3" id="encuesta_id">
+                    <select name="encuesta_id" class="form-select mb-3" id="encuesta_id" onchange="asignar_encuesta();">
                         <option value="0">Seleccionar encuesta</option>
                         <?php
                         //TRAEMOS LAS ENCUESTAS DISPONIBLES DE LA BASE DE DATOS
@@ -65,13 +65,10 @@ include "conexion/conex.php";
                                 <path d="M0 4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v4a.5.5 0 0 1-1 0V7H1v5a1 1 0 0 0 1 1h5.5a.5.5 0 0 1 0 1H2a2 2 0 0 1-2-2V4Zm1 2h13V4a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2Z" />
                                 <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z" />
                             </svg></button>
+                            <div id="respuesta"></div>
                     </div>
                     <!--inicio del codigo para copiar el popup-->
-                    <textarea id="p1" class="form-control" style="height: 30rem">
-                        <?php
-                        include('popup/codigoPopup.php');
-                        ?>
-                    </textarea>
+                    
                 </div>
             </div>
         </div>
@@ -98,6 +95,20 @@ include "conexion/conex.php";
             },
             success: function(r) {
                 $('#respuesta').html(r);
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    //script para hacer el buscado de encuestas
+    function asignar_encuesta() {
+        $.ajax({
+            type: 'POST',
+            url: 'back/devolver_url.php',
+            data: "encuestas=" + $('#encuesta_id').val(),
+            success: function(mensaje) {
+                $('#respuesta').html(mensaje);
             }
         });
     }

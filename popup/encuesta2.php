@@ -15,13 +15,6 @@ $sql2= "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo, tipo_pregunta_id
     AND encuestas.id_encuesta = preguntas.encuesta_id 
     AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta";
     $resultado2= mysqli_Query($conex,$sql2);
-
-    // $sql3="SELECT pregunta_id, descripcion, id_opciones 
-    // FROM preguntas, tipos_preguntas,encuestas,opciones 
-    // WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
-    // AND encuestas.id_encuesta = preguntas.encuesta_id 
-    // AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
-    // $resultado3= mysqli_query($conex,$sql3); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,9 +103,8 @@ $sql2= "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo, tipo_pregunta_id
                         }
                     }
                 }
-                    ?>
-
-                    
+mysqli_close($conex);
+                    ?>            
                     <div class="card-footer">
                         <button type="submit" class="btn w-100" style="background-color:#bb0112; color:white">Enviar</button>
                     </div>

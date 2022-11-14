@@ -51,7 +51,7 @@ if( $opcion_4 != false)
     $resultado_opcion4= mysqli_Query($conex, $sql_opcion4);
 }
 
-if( $opcion_4 != false)
+if( $opcion_5 != false)
 {
     $sql_opcion5= "INSERT INTO opciones (descripcion, pregunta_id) VALUES ('$opcion_5', '$pregunta_id')";
     $resultado_opcion5= mysqli_Query($conex, $sql_opcion5);
