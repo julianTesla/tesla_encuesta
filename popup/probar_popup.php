@@ -1,8 +1,3 @@
-<?php
-$id_encuesta = $_POST['encuestas'];
-$id_encuesta;
-?>
-<textarea id="p1" class="form-control" style="height: 30rem">
 <p>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.js"></script>
                     
@@ -331,14 +326,14 @@ $id_encuesta;
                                                 if (opts.theme && full) {
                                                     s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage ui-dialog ui-widget ui-corner-all" style="z-index:' + (z + 10) + ';display:none;position:fixed">';
                                                     if (opts.title) {
-                                                        s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || '&nbsp;') + '</div>';
+                                                        s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || ' ') + '</div>';
                                                     }
                                                     s += '<div class="ui-widget-content ui-dialog-content"></div>';
                                                     s += '</div>';
                                                 } else if (opts.theme) {
                                                     s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement ui-dialog ui-widget ui-corner-all" style="z-index:' + (z + 10) + ';display:none;position:absolute">';
                                                     if (opts.title) {
-                                                        s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || '&nbsp;') + '</div>';
+                                                        s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || ' ') + '</div>';
                                                     }
                                                     s += '<div class="ui-widget-content ui-dialog-content"></div>';
                                                     s += '</div>';
@@ -685,7 +680,7 @@ $id_encuesta;
                     
                     
                         <form>
-                            <iframe style=" width: 100%; height: 400px;" src="http://localhost/tesla_encuesta/popup/encuesta2.php?ID=<?php echo $id_encuesta; ?>" frameborder="0"></iframe>
+                            <iframe style=" width: 100%; height: 400px;" src="http://localhost/tesla_encuesta/popup/encuesta2.php?ID=14" frameborder="0"></iframe>
                             <button type="submit" onclick="coki();" class="btn btn-primary">Cerrar</button>
                         </form>
                     
@@ -702,4 +697,3 @@ $id_encuesta;
                         <p dir="ltr" style="text-align: left;">.</p>
                     
                     </div>
-</textarea>
