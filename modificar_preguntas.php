@@ -91,7 +91,7 @@ while ($row = mysqli_fetch_array($resultado))
                             </div>
                         </fieldset>
 
-                        <button class="btn btn-success" type="submit">Guadar Modificar</button>
+                        <button class="btn btn-success" type="submit">Guardar cambios</button>
                     </form>
                     <br>
                     <a href="listaEncuestas.php" class="btn btn-outline-primary w-100 m-2">Cancelar</a>
