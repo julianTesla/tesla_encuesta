@@ -1,3 +1,28 @@
+<?php
+include "../conexion/conex.php";
+
+$id_encuesta= $_GET['ID'];
+
+$sql =  "SELECT id_encuesta, nombre_encuesta FROM encuestas WHERE encuestas.id_encuesta = '$id_encuesta' ";
+$resultado =  mysqli_query($conex, $sql);
+while($row= mysqli_fetch_array($resultado))
+{
+    $nombre_encuesta= $row[1];
+}
+
+$sql2= "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo, tipo_pregunta_id 
+    FROM encuestas,preguntas,tipos_preguntas WHERE encuestas.id_encuesta = '$id_encuesta' 
+    AND encuestas.id_encuesta = preguntas.encuesta_id 
+    AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta";
+    $resultado2= mysqli_Query($conex,$sql2);
+
+    // $sql3="SELECT pregunta_id, descripcion, id_opciones 
+    // FROM preguntas, tipos_preguntas,encuestas,opciones 
+    // WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
+    // AND encuestas.id_encuesta = preguntas.encuesta_id 
+    // AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
+    // $resultado3= mysqli_query($conex,$sql3); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +40,7 @@
 </head>
 
 <body>
+
     <div class="mx-0 mx-sm-auto">
         <div class="card">
             <div class="card-header p-0" style="background-color:#303030" >
@@ -26,7 +52,7 @@
                 <div class="text-center">
                     <i class="far fa-file-alt fa-4x text-primary"></i>
                     <p class="mt-2 p-2 m-0">
-                        <strong>¡Tu opinión nos importa!</strong>
+                        <strong>¡<?php echo $nombre_encuesta; ?>!</strong>
                     </p>
                     <p class="p-2 m-0">
                         Te invitamos a responder una breve encuesta, te llevará menos de 1 minuto.
@@ -36,50 +62,61 @@
                 <hr/>
 
                 <form class="px-4" action="">
-                    <p class="text-center mb-2"><strong>¿Como evaluarías al profesor?</strong></p>
+                    <?php
+                        while($row2= mysqli_fetch_array($resultado2))//Bucle para mostrar las preguntas
+                        {
+                    ?>
+                    <p class="text-center mb-2"><strong><?php echo $row2['nombre_pregunta'] ?></strong></p>
+                    <?php
+                    if($row2['tipo_pregunta_id'] == 1)
+                    {
+                        $sql3="SELECT pregunta_id, descripcion, id_opciones 
+                        FROM preguntas, tipos_preguntas,encuestas,opciones 
+                        WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
+                        AND encuestas.id_encuesta = preguntas.encuesta_id 
+                        AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
+                        $resultado3= mysqli_query($conex,$sql3); 
+                        while($row3= mysqli_fetch_array($resultado3))//Bucle para mostrar las opciones de las preguntas
+                        {
+                            if($row2['id_pregunta'] == $row3['pregunta_id'])
+                            {
+                                echo '<div class="form-check d-flex justify-content-center p-0">
+                                <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example1" />
+                                <label class="form-check-label m-1" for="radio3Example1">
+                                  '.$row3['descripcion'].'
+                                </label>
+                            </div>';
 
-                    <div class="form-check d-flex justify-content-center p-0">
-                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example1" />
-                        <label class="form-check-label m-1" for="radio3Example1">
-                            Excelente
-                        </label>
-                    </div>
-                    <div class="form-check d-flex justify-content-center p-0">
-                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example2" />
-                        <label class="form-check-label m-1" for="radio3Example2">
-                            Muy bueno
-                        </label>
-                    </div>
-                    <div class="form-check d-flex justify-content-center p-0">
-                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example3" />
-                        <label class="form-check-label m-1" for="radio3Example3">
-                            Bueno
-                        </label>
-                    </div>
-                    <div class="form-check d-flex justify-content-center p-0">
-                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example4" />
-                        <label class="form-check-label m-1" for="radio3Example4">
-                            Regular
-                        </label>
-                    </div>
-                    <div class="form-check d-flex justify-content-center p-0">
-                        <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example5" />
-                        <label class="form-check-label m-1" for="radio3Example5">
-                            Malo
-                        </label>
-                    </div>
+                            }
+                        }
+                    }
+                    elseif($row2['tipo_pregunta_id'] == 2)
+                    {
+                        $sql3="SELECT pregunta_id, descripcion, id_opciones 
+                        FROM preguntas, tipos_preguntas,encuestas,opciones 
+                        WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
+                        AND encuestas.id_encuesta = preguntas.encuesta_id 
+                        AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
+                        $resultado3= mysqli_query($conex,$sql3);
+                        while($row3= mysqli_fetch_array($resultado3))
+                        {
+                            if($row2['id_pregunta'] == $row3['pregunta_id'])
+                            {
+                                echo '<div class="form-outline mb-4">
+                                    <textarea class="form-control" id="form4Example3" rows="4" placeholder="'.$row3['descripcion'].'"></textarea>
+                                    <label class="form-label" for="form4Example3" style="color:#808488">Opcional</label>
+                                </div>';
+                            }
+                        }
+                    }
+                }
+                    ?>
 
-                    <p class="text-center"><strong>¿Te gustaría agregar algo más?</strong></p>
-
-                    <!-- Message input -->
-                    <div class="form-outline mb-4">
-                        <textarea class="form-control" id="form4Example3" rows="4" placeholder="Tu comentario"></textarea>
-                        <label class="form-label" for="form4Example3" style="color:#808488">Opcional</label>
+                    
+                    <div class="card-footer">
+                        <button type="submit" class="btn w-100" style="background-color:#bb0112; color:white">Enviar</button>
                     </div>
                 </form>
-            </div>
-            <div class="card-footer">
-                <button type="submit" class="btn w-100" style="background-color:#bb0112; color:white">Enviar</button>
             </div>
         </div>
     </div>

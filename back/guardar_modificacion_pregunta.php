@@ -1,21 +1,6 @@
 <?php
 include "../conexion/conex.php";
 
-// $id_pregunta= $_POST['id_pregunta'];
-// $id_opcion1= $_POST['id_opcion1'];
-// $id_opcion2= $_POST['id_opcion2'];
-// $id_opcion3= $_POST['id_opcion3'];
-// $id_opcion4= $_POST['id_opcion4'];
-// $id_opcion5= $_POST['id_opcion5'];
-// $id_texto= $_POST['id_texto'];
-
-// $nombre_pregunta= $_POST['nombre_pregunta'];
-// $opcion1= $_POST['opcion_1'];
-// $opcion2= $_POST['opcion_2'];
-// $opcion3= $_POST['opcion_3'];
-// $opcion4= $_POST['opcion_4'];
-// $opcion5= $_POST['opcion_5'];
-// $texto= $_POST['descripcion_texto'];
 
 if(isset($_POST['id_pregunta']) || isset($_POST['nombre_pregunta']))
 {
@@ -79,6 +64,6 @@ if(isset($_POST['descripcion_texto']) || isset($_POST['id_texto']))
 }
 mysqli_close($conex);
 ?>
-<!-- <script>
+ <script>
 window.location="../listaEncuestas.php";
-</script> -->
+</script> 
