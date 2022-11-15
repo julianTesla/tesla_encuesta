@@ -3,6 +3,7 @@ include "../conexion/conex.php";
 
 $id_encuesta = $_GET['ID'];
 $id_curso= $_GET['id'];
+$id_alummo= $_GET['user'];
 
 $sql =  "SELECT id_encuesta, nombre_encuesta FROM encuestas WHERE encuestas.id_encuesta = '$id_encuesta' ";
 $resultado =  mysqli_query($conex, $sql);
