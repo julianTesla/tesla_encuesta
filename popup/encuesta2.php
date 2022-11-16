@@ -46,7 +46,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                 <div class="text-center">
                     <i class="far fa-file-alt fa-4x text-primary"></i>
                     <p class="mt-2 p-2 m-0">
-                        <strong>¡Tu opinión nos importa! <?php echo $id_curso;?></strong>
+                        <strong>¡Tu opinión nos importa! <?php echo $id_curso.' Y '.$id_alummo; ?></strong>
                     </p>
                     <p class="p-2 m-0">
                         Te invitamos a responder una breve encuesta, te llevará menos de 1 minuto.
@@ -57,6 +57,8 @@ $resultado2 = mysqli_Query($conex, $sql2);
 
                 <form class="px-4" action="">
                     <?php
+
+                    $cont=1;
                     while ($row2 = mysqli_fetch_array($resultado2)) //Bucle para mostrar las preguntas
                     {
                     ?>
@@ -73,7 +75,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             {
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
                                     echo '<div class="form-check d-flex justify-content-center p-0">
-                                <input class="form-check-input m-2" type="radio" name="exampleForm" id="radio3Example1" />
+                                <input class="form-check-input m-2" type="radio" name="respuesta'.$cont.'" value="' . $row3['descripcion'] . '" >
                                 <label class="form-check-label m-1" for="radio3Example1">
                                 ' . $row3['descripcion'] . '
                                 </label>
@@ -90,12 +92,14 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             while ($row3 = mysqli_fetch_array($resultado3)) {
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
                                     echo '<div class="form-outline mb-4">
-                                    <textarea class="form-control" id="form4Example3" rows="4" placeholder="' . $row3['descripcion'] . '"></textarea>
+                                    <textarea class="form-control" name="text'.$cont.'" rows="4" placeholder="' . $row3['descripcion'] . '"></textarea>
                                     <label class="form-label" for="form4Example3" style="color:#808488">Opcional</label>
                                 </div>';
+                                $cont++;
                                 }
                             }
                         }
+                        $cont++;
                     }
                     mysqli_close($conex);
                     ?>
