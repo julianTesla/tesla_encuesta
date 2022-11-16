@@ -1,19 +1,3 @@
-<?php
-if(isset($_GET['user_id']))
-{
-    $user_id= $_GET['user_id'];
-}
-else
-{
-    $curso_id=255;
-?>
-    <script>
-        var userid =  document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
-        window.location="https://campus.institutotesla.com.ar/course/view.php?id=<?php echo $curso_id;?>&user_id="+userid+"";
-    </script>
-<?php
-}//cierra el else
-?>
 
 <p>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.js"></script>
@@ -694,9 +678,11 @@ else
 </p>
 
 <div id="pagopuntual" height="100%" width="100%" style="cursor: default; display: none; overflow-y: hidden;"><button type="button" class="close" aria-hidden="true" onclick="cerrar()" style="padding: 10; cursor: pointer; background: #000; border: 0; -webkit-appearance: none; float: right; color: #ffffff; font-size: 20px;">X</button>
-
+<?php
+$curso_id= $_GET['id'];
+?>
     <form>
-        <iframe style=" width: 100%; height: 400px;" src="http://localhost/tesla_encuesta/popup/encuesta2.php?id_curso=<?php echo $curso_id; ?>&id_alumno=<?php echo $user_id; ?>&id_encuesta=14" frameborder="0"></iframe>
+        <iframe style=" width: 100%; height: 400px;" src="https://teslaencuestadesarrollo.000webhostapp.com/tesla_encuesta/popup/encuesta2.php?ID=14&id=<?php echo $curso_id?>" frameborder="0"></iframe>
         <button type="submit" onclick="coki();" class="btn btn-primary">Cerrar</button>
     </form>
 

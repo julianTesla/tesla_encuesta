@@ -55,7 +55,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
 
                 <hr />
 
-                <form class="px-4" action="">
+                <form class="px-4" action="../back/guardar_formualrio.php" method="POST">
                     <?php
 
                     $cont=1;
@@ -92,10 +92,9 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             while ($row3 = mysqli_fetch_array($resultado3)) {
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
                                     echo '<div class="form-outline mb-4">
-                                    <textarea class="form-control" name="text'.$cont.'" rows="4" placeholder="' . $row3['descripcion'] . '"></textarea>
+                                    <textarea class="form-control" name="texto'.$cont.'" rows="4" placeholder="' . $row3['descripcion'] . '"></textarea>
                                     <label class="form-label" for="form4Example3" style="color:#808488">Opcional</label>
                                 </div>';
-                                $cont++;
                                 }
                             }
                         }
