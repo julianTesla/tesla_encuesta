@@ -39,7 +39,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
         <div class="card">
             <div class="card-header p-0" style="background-color:#303030">
                 <h5 class="card-title text-white mt-2 text-center" id="exampleModalLabel">
-                    <img src="TESLA_LogoBlanco.png" class="logo m-2" style="width: 170px">
+                    <img src="TESLA_LogoBlanco.png" class="logo m-2" style="width: 150px">
                 </h5>
             </div>
             <div class="modal-body">
@@ -48,7 +48,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                     <p class="mt-2 p-2 m-0">
                         <strong>¡Tu opinión nos importa! <?php echo $id_curso.' Y '.$id_alummo; ?></strong>
                     </p>
-                    <p class="p-2 m-0">
+                    <p class="px-4 m-0">
                         Te invitamos a responder una breve encuesta, te llevará menos de 1 minuto.
                     </p>
                 </div>
@@ -62,7 +62,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                     while ($row2 = mysqli_fetch_array($resultado2)) //Bucle para mostrar las preguntas
                     {
                     ?>
-                        <p class="text-center mb-2"><strong><?php echo $row2['nombre_pregunta'] ?></strong></p>
+                        <p class="text-center m-1"><strong><?php echo $row2['nombre_pregunta'] ?></strong></p>
                     <?php
                         if ($row2['tipo_pregunta_id'] == 1) {
                             $sql3 = "SELECT pregunta_id, descripcion, id_opciones 
@@ -74,9 +74,9 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             while ($row3 = mysqli_fetch_array($resultado3)) //Bucle para mostrar las opciones de las preguntas
                             {
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
-                                    echo '<div class="form-check d-flex justify-content-center p-0">
-                                <input class="form-check-input m-2" type="radio" name="respuesta'.$cont.'" value="' . $row3['descripcion'] . '" >
-                                <label class="form-check-label m-1" for="radio3Example1">
+                                    echo '<div class="form-check d-flex justify-content-rigth p-0">
+                                <input class="form-check-input m-1" type="radio" name="respuesta'.$cont.'" value="' . $row3['descripcion'] . '" >
+                                <label class="form-check-label m-0" for="radio3Example1">
                                 ' . $row3['descripcion'] . '
                                 </label>
                             </div>';
@@ -91,7 +91,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             $resultado3 = mysqli_query($conex, $sql3);
                             while ($row3 = mysqli_fetch_array($resultado3)) {
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
-                                    echo '<div class="form-outline mb-4">
+                                    echo '<div class="form-outline m-0">
                                     <textarea class="form-control" name="texto'.$cont.'" rows="4" placeholder="' . $row3['descripcion'] . '"></textarea>
                                     <label class="form-label" for="form4Example3" style="color:#808488">Opcional</label>
                                 </div>';
@@ -102,9 +102,10 @@ $resultado2 = mysqli_Query($conex, $sql2);
                     }
                     mysqli_close($conex);
                     ?>
-                    <div class="card-footer">
-                        <button type="submit" class="btn w-100" style="background-color:#bb0112; color:white">Enviar</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn w-50 mt-3 mb-3" style="background-color:#bb0112; color:white">Enviar</button>
                     </div>
+                    
                 </form>
             </div>
         </div>
