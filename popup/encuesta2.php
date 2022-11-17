@@ -4,6 +4,7 @@ include "../conexion/conex.php";
 $id_encuesta = $_GET['ID'];
 $id_curso= $_GET['id'];
 $id_alummo= $_GET['user'];
+$nombre_curso=$_GET['curs'];
 
 $sql =  "SELECT id_encuesta, nombre_encuesta FROM encuestas WHERE encuestas.id_encuesta = '$id_encuesta' ";
 $resultado =  mysqli_query($conex, $sql);
@@ -46,7 +47,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                 <div class="text-center">
                     <i class="far fa-file-alt fa-4x text-primary"></i>
                     <p class="mt-2 p-2 m-0">
-                        <strong>¡Tu opinión nos importa! <?php echo $id_curso.' Y '.$id_alummo; ?></strong>
+                        <strong>¡Tu opinión nos importa! <?php echo $id_curso.' Y '.$id_alummo.' y '.$nombre_curso; ?></strong>
                     </p>
                     <p class="p-2 m-0">
                         Te invitamos a responder una breve encuesta, te llevará menos de 1 minuto.
