@@ -58,7 +58,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
 
                 <form class="px-4" action="../back/guardar_formualrio.php" method="POST">
 
-                    <div style="visibility: visible; position:relative;">
+                    <div style="display:none; position:relative;">
                             <input type="int" name="id_curso" value="<?php echo $id_curso; ?>">
                             <input type="int" name="id_encuesta" value="<?php echo $id_encuesta; ?>">
                             <input type="int" name="id_alumno" value="<?php echo $id_alumno; ?>">
