@@ -692,7 +692,7 @@
 
         let nombre_curso = document.title.slice(7)
         var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
-        let html= '<iframe style=" width: 100%; height: 400px;" src="https://teslaencuestadesarrollo.000webhostapp.com/tesla_encuesta/popup/encuesta2.php?ID=14&user='+userid+'&curs='+nombre_curso+'&id='+id_curso+'" frameborder="0"></iframe>';
+        let html= '<iframe style=" width: 100%; height: 400px;" src="https://teslaencuestadesarrollo.000webhostapp.com/tesla_encuesta/popup/encuesta2.php?ID=14&user='+userid+'&curso='+nombre_curso+'&id='+id_curso+'" frameborder="0"></iframe>';
             document.getElementById("contenido").innerHTML=html;
     </script>
 
