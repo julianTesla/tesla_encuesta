@@ -678,13 +678,23 @@
 </p>
 
 <div id="pagopuntual" height="100%" width="100%" style="cursor: default; display: none; overflow-y: hidden;"><button type="button" class="close" aria-hidden="true" onclick="cerrar()" style="padding: 10; cursor: pointer; background: #000; border: 0; -webkit-appearance: none; float: right; color: #ffffff; font-size: 20px;">X</button>
-<?php
-$curso_id= $_GET['id'];
-?>
+
     <form>
-        <iframe style=" width: 100%; height: 400px;" src="https://teslaencuestadesarrollo.000webhostapp.com/tesla_encuesta/popup/encuesta2.php?ID=14&id=<?php echo $curso_id?>" frameborder="0"></iframe>
+        <div id="contenido"></div>
         <button type="submit" onclick="coki();" class="btn btn-primary">Cerrar</button>
     </form>
+
+    <!-- Script para la ectracccion de los datos de las pantallas -->
+    <script>
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var id_curso = urlParams.get('id');
+
+        let nombre_curso = document.title.slice(7)
+        var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
+        let html= '<iframe style=" width: 100%; height: 400px;" src="https://teslaencuestadesarrollo.000webhostapp.com/tesla_encuesta/popup/encuesta2.php?ID=14&user='+userid+'&curso='+nombre_curso+'&id='+id_curso+'" frameborder="0"></iframe>';
+            document.getElementById("contenido").innerHTML=html;
+    </script>
 
     <script>
         function opo() {

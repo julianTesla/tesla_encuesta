@@ -3,13 +3,29 @@ include "../conexion/conex.php";
 
 ini_set('date.timezone', 'America/Argentina/Buenos_Aires');
 
+$encuesta_id= $_POST['id_encuesta'];
+$curso_id= $_POST['id_curso'];
+$usuer_id= $_POST['id_alumno'];
+$nombre= $_POST['nombre'];
+
+//Comprobar que no se repita el curso guardado
+$sql_curso="SELECT * FROM cursos WHERE cursos.id_curso = '$curso_id'";
+$resultado_curso= mysqli_query($conex, $sql_curso);
+
+if(mysqli_num_rows($resultado_curso) == 0){
+    $sql_curso1= "INSERT INTO cursos (id_curso, nombre_curso) VALUES ('$curso_id', '$nombre')";
+    $resultado_curso1=mysqli_query($conex, $sql_curso1);
+}
+
+
 if (isset($_POST['respuesta1'])) {
     $fecha = date('Y-m-d', time());
     $respuesta_1 = $_POST['respuesta1'];
 
-    $sql1 = "INSERT INTO resultados (asignacion_encuesta_id, respuesta_text, respuesta_multiplechoice, fecha) 
-    VALUE(4,0, '$respuesta_1','$fecha' )";
+    $sql1 ="INSERT INTO `resultados` ( `resultado_encuesta_id`, `resultado_curso_id`, `respuesta_text`, `respuesta_multiplechoice`, `fecha`) 
+            VALUES (NULL, '$encuesta_id', '$curso_id', '0', '$respuesta_1', '$fecha');";
     $resultado1 = mysqli_query($conex, $sql1);
+    
 }
 
 if (isset($_POST['respuesta2'])) {

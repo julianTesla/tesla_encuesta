@@ -3,7 +3,8 @@ include "../conexion/conex.php";
 
 $id_encuesta = $_GET['ID'];
 $id_curso= $_GET['id'];
-$id_alummo= $_GET['user'];
+$id_alumno= $_GET['user'];
+$nombre_curso=$_GET['curso'];
 
 $sql =  "SELECT id_encuesta, nombre_encuesta FROM encuestas WHERE encuestas.id_encuesta = '$id_encuesta' ";
 $resultado =  mysqli_query($conex, $sql);
@@ -46,7 +47,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                 <div class="text-center">
                     <i class="far fa-file-alt fa-4x text-primary"></i>
                     <p class="mt-2 p-2 m-0">
-                        <strong>¡Tu opinión nos importa! <?php echo $id_curso.' Y '.$id_alummo; ?></strong>
+                        <strong>¡Tu opinión nos importa! </strong>
                     </p>
                     <p class="px-4 m-0">
                         Te invitamos a responder una breve encuesta, te llevará menos de 1 minuto.
@@ -56,6 +57,14 @@ $resultado2 = mysqli_Query($conex, $sql2);
                 <hr />
 
                 <form class="px-4" action="../back/guardar_formualrio.php" method="POST">
+
+                    <div style="visibility: visible; position:relative;">
+                            <input type="int" name="id_curso" value="<?php echo $id_curso; ?>">
+                            <input type="int" name="id_encuesta" value="<?php echo $id_encuesta; ?>">
+                            <input type="int" name="id_alumno" value="<?php echo $id_alumno; ?>">
+                            <input type="int" name="nombre" value="<?php echo $nombre_curso; ?>">
+                    </div>
+
                     <?php
 
                     $cont=1;
