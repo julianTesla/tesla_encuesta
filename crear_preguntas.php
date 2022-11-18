@@ -97,7 +97,6 @@ while ($row = mysqli_fetch_array($resultado)) {
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">Preguntas</th>
                                         <th scope="col">Tipo de pregunta</th>
                                         <th scope="col">Descripcion</th>
@@ -111,7 +110,7 @@ while ($row = mysqli_fetch_array($resultado)) {
                                         <tbody>
                                             <tr>
                                         <?php
-                                        echo  '<td>' . $row2[1] . '</td>';
+                                        
                                         echo '<td>' . $row2[2] . '</td>';
                                         echo '<td>' . $row2[3] . '</td>';
                                         echo '<td>';

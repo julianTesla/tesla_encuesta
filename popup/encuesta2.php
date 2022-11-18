@@ -62,7 +62,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             <input type="int" name="id_curso" value="<?php echo $id_curso; ?>">
                             <input type="int" name="id_encuesta" value="<?php echo $id_encuesta; ?>">
                             <input type="int" name="id_alumno" value="<?php echo $id_alumno; ?>">
-                            <input type="int" name="nombre" value="<?php echo $nombre_curso; ?>">
+                            <input type="text" name="nombre_curso" value="<?php echo $nombre_curso; ?>">
                     </div>
 
                     <?php
