@@ -65,7 +65,7 @@ if($_SESSION['usuario'] == false)
         <div class="sidebar pe-3 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
                 
-                <a href="/tesla_encuesta/resultados.php" class="navbar-brand mx-4 mb-3">
+                <a href="resultados.php" class="navbar-brand mx-4 mb-3">
                 <img style="width: 182px; height: 68px;" src="https://institutotesla.com.ar/wp-content/themes/institutotesla/assets/img/logo_footer.svg" alt="">
                 <!-- <h3 class="text-primary"> Tesla</h3> -->
                 </a>

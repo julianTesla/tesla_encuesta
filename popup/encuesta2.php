@@ -56,7 +56,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
 
                 <hr />
 
-                <form class="px-4" action="../back/guardar_formualrio.php" method="POST">
+                <form class="px-4" action="../back/guardar_formulario.php" method="POST">
 
                     <div style="display:none; position:relative;">
                             <input type="int" name="id_curso" value="<?php echo $id_curso; ?>">
