@@ -138,7 +138,7 @@ mysqli_close($conex);
         <div class="card">
             <div class="card-header p-0" style="background-color:#303030">
                 <h5 class="card-title text-white mt-2 text-center" id="exampleModalLabel">
-                    <img src="../popup/TESLA_LogoBlanco.png" class="logo m-2" style="width: 170px">
+                    <img src="../popup/TESLA_LogoBlanco.png" class="logo m-2" style="width: 150px">
                 </h5>
             </div>
             <div class="modal-body">
@@ -147,7 +147,7 @@ mysqli_close($conex);
                     <h3 class="m-4">
                         <strong>¡Gracias por ayudarnos a seguir creciendo!</strong>
                     </h3>
-                    <img src="../popup/comprobado.png" width="100px" alt="Check">
+                    <img src="../popup/comprobado.png" width="80px" alt="Check">
                 </div>
                 <br>
                 <br>

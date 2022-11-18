@@ -73,10 +73,10 @@ if($_SESSION['usuario'] == false)
                 
                 <div class="navbar-nav w-100">
                     <a href="Crear_encuesta.php" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Crear encuesta</a>
-                    <a href="/tesla_encuesta/asignarEncuesta.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Asignar encuesta</a>
-                    <a href="/tesla_encuesta/listaEncuestas.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Lista de encuestas</a>
-                    <a href="/tesla_encuesta/resultados.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Resultados</a>
-                    <a href="/tesla_encuesta/comentarios.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Comentarios</a>
+                    <a href="asignarEncuesta.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Asignar encuesta</a>
+                    <a href="listaEncuestas.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Lista de encuestas</a>
+                    <a href="resultados.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Resultados</a>
+                    <a href="comentarios.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Comentarios</a>
                 </div>
             </nav>
         </div>
@@ -95,7 +95,7 @@ if($_SESSION['usuario'] == false)
                     <i class="fa fa-bars"></i>
                 </a>
                 <div class="navbar-nav align-items-center ms-auto">
-                    <a href="/tesla_encuesta/login/cerrar.php?cerrar=yes" class="btn btn-outline-primary m-2">Cerrar sesión</a>
+                    <a href="login/cerrar.php?cerrar=yes" class="btn btn-outline-primary m-2">Cerrar sesión</a>
                 </div>
             </nav>
             <!-- Navbar End -->
