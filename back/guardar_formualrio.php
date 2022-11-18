@@ -17,6 +17,10 @@ if(mysqli_num_rows($resultado_curso) == 0){
     $resultado_curso1=mysqli_query($conex, $sql_curso1);
 }
 
+$sql1a="INSERT INTO `respondio` (`curso_id`, `id_alumno`, `encuesta_id`)
+VALUES ('$curso_id', '$usuer_id', '$encuesta_id')";
+$resultado1a= mysqli_query($conex, $sql1a);
+
 
 if (isset($_POST['respuesta1'])) {
     $fecha = date('Y-m-d', time());
@@ -25,7 +29,6 @@ if (isset($_POST['respuesta1'])) {
     $sql1 ="INSERT INTO `resultados` ( `resultado_encuesta_id`, `resultado_curso_id`, `respuesta_text`, `respuesta_multiplechoice`, `fecha`) 
             VALUES (NULL, '$encuesta_id', '$curso_id', '0', '$respuesta_1', '$fecha');";
     $resultado1 = mysqli_query($conex, $sql1);
-    
 }
 
 if (isset($_POST['respuesta2'])) {
