@@ -16,9 +16,10 @@ include "conexion/conex.php";
                     <option value="">Seleccionar encuesta</option> 
                 </select>
             </form>-->
-
+            <div>
+            <label>Seleccionar encuesta:</label>  
             <select style="width: 70%;" name="encuesta" class="js-example-basic-single" id="buscar_encuesta" onchange="buscar_encuesta();" data-show-subtext="true" data-live-search="true">
-                <option value="0">Seleccionar encuesta</option>
+            <option value="0">Todas las encuestas</option>
                 <?php
                 //TRAEMOS LAS ENCUESTAS DISPONIBLES DE LA BASE DE DATOS
                 $sql = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC";
@@ -28,6 +29,7 @@ include "conexion/conex.php";
                 }
                 ?>
             </select>
+            </div>
             <!-- FIN SELECTOR ENCUESTA -->
 
 

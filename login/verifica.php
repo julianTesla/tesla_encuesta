@@ -7,7 +7,7 @@ $contraseña=$_POST['contraseña'];
 // $cookie_name = "user";
 // $cookie_value = "John Doe";
 
-if($usuario == 'admin' && $contraseña == 'admin'){
+if($usuario == 'admin' && $contraseña == 'Tesla.01'){
   session_start();
   //setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
   $_SESSION["usuario"] = $usuario;

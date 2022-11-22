@@ -95,7 +95,7 @@ if (mysqli_num_rows($resultado) > 0) {
 
     echo $respuesta;
 }
-// else
-// {
-//     echo "Sin resultados";
-// }
+//else
+//{
+    //echo "Sin resultados";
+//}

@@ -73,7 +73,7 @@ while ($row = mysqli_fetch_array($resultado)) {
                         <button class="btn btn-success" type="submit">Guadar pregunta</button>
                     </form>
                     <br>
-                    <a href="resultados.php" class="btn btn-outline-primary w-100 m-2">Finalizar</a>
+                    <a href="listaEncuestas.php" class="btn btn-outline-primary w-100 m-2">Finalizar</a>
                 </div>
             </div>
 

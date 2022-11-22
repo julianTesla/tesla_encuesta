@@ -14,18 +14,19 @@ $id_encuesta;
         var urlParams = new URLSearchParams(queryString);
         var id_curso = urlParams.get('id');
         var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
+        let nombre_curso = document.title.slice(7)
 
 
-        var direccion= "https://encuestas.institutotesla.ar/back/pregunta_existe.php?ID=<?php echo $id_encuesta; ?>&user="+userid+"&id="+id_curso"";
-        $.ajax({
-            type: 'GET',
-            url: direccion,
-            //data: "encuestas=" + $('#encuesta_id').val(),
-            success: function(mensaje) {
-                $('#respuesta').html(mensaje);
-                console.log(mensaje);
-            if(mensaje != "1")
-            {
+        // var direccion= "https://encuestas.institutotesla.ar/back/pregunta_existe.php?ID=<?php echo $id_encuesta?>&user="+userid+"&id="+id_curso+"";
+        // $.ajax({
+        //     type: 'GET',
+        //     url: direccion,
+        //     //data: "encuestas=" + $('#encuesta_id').val(),
+        //     success: function(mensaje) {
+        //         $('#respuesta').html(mensaje);
+        //         console.log(mensaje);
+        //     if(mensaje != "1")
+        //     {
         /*!
          * jQuery blockUI plugin
          * Version 2.70.0-2014.11.23
@@ -668,22 +669,15 @@ $id_encuesta;
 
         }
         //
-        var queryString = window.location.search;
-        var urlParams = new URLSearchParams(queryString);
-        var id_curso = urlParams.get('id');
-        let nombre_curso = document.title.slice(7)
-        var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
-
-        let html= '<iframe style=" width: 100%; height: 400px;" src="https://encuestas.institutotesla.ar/popup/encuesta2.php?ID=<?php echo $id_encuesta; ?>&user='+userid+'&curso='+nombre_curso+'&id='+id_curso+'" frameborder="0"></iframe>';
-            document.getElementById("contenido").innerHTML=html;
+        
 
 
 
-    }//cierre de llaves del if
+   // }//cierre de llaves del if
 
 //cierre de llaves de la funcion de ajax 
-    }
-        });
+    //}
+      //  });
     </script>
 </p>
 
@@ -695,16 +689,16 @@ $id_encuesta;
                 
 <button onclick="cerrar();" class="btn btn-primary">Finalizar</button>
 
-<!-- Script para la ectracccion de los datos de las pantallas -->
-<!-- <script>
+<!-- Script para la extracccion de los datos de las pantallas -->
+ <script>
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var id_curso = urlParams.get('id');
-        let nombre_curso = document.title.slice(7)
         var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
-        let html= '<iframe style=" width: 100%; height: 400px;" src="https://encuestas.institutotesla.ar/popup/encuesta2.php?ID=&user='+userid+'&curso='+nombre_curso+'&id='+id_curso+'" frameborder="0"></iframe>';
+        
+        let html= '<iframe style=" width: 100%; height: 400px;" src="https://encuestas.institutotesla.ar/popup/encuesta2.php?ID=<?php echo $id_encuesta ?>&user='+userid+'&curso='+nombre_curso+'&id='+id_curso+'" frameborder="0"></iframe>';
             document.getElementById("contenido").innerHTML=html;
-    </script> -->
+    </script> 
 </div>
 
 
