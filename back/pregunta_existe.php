@@ -13,10 +13,10 @@ $resultadob= mysqli_query($conex, $sqlb);
 
 
 if(mysqli_num_rows($resultadob)>0){
-    $existe = "Si";
+    $existe = 1;
     echo $existe;
 } else {
-    echo "No";
+    echo 0;
 }
 
 
