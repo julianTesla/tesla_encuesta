@@ -87,7 +87,7 @@ while ($row = mysqli_fetch_array($resultado)) {
                     $sql2 = "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo 
     FROM encuestas,preguntas,tipos_preguntas WHERE encuestas.id_encuesta = '$grupo_id' 
     AND encuestas.id_encuesta = preguntas.encuesta_id 
-    AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta";
+    AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta ORDER BY preguntas.id_pregunta ASC";
                     $resultado2 = mysqli_Query($conex, $sql2);
             ?>
                     <!--Inicio de tabla-->
@@ -118,7 +118,7 @@ while ($row = mysqli_fetch_array($resultado)) {
                                             FROM preguntas, tipos_preguntas,encuestas,opciones 
                                             WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
                                             AND encuestas.id_encuesta = preguntas.encuesta_id 
-                                            AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones";
+                                            AND preguntas.id_pregunta = opciones.pregunta_id ORDER BY id_opciones ASC";
                                         $resultado3 = mysqli_query($conex, $sql3);
                                         while ($row3 = mysqli_fetch_array($resultado3)) {
 
