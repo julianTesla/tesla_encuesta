@@ -9,24 +9,6 @@ $id_encuesta;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.js"></script>
 
     <script>
-
-        var queryString = window.location.search;
-        var urlParams = new URLSearchParams(queryString);
-        var id_curso = urlParams.get('id');
-        var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
-        let nombre_curso = document.title.slice(7)
-
-
-        // var direccion= "https://encuestas.institutotesla.ar/back/pregunta_existe.php?ID=<?php echo $id_encuesta?>&user="+userid+"&id="+id_curso+"";
-        // $.ajax({
-        //     type: 'GET',
-        //     url: direccion,
-        //     //data: "encuestas=" + $('#encuesta_id').val(),
-        //     success: function(mensaje) {
-        //         $('#respuesta').html(mensaje);
-        //         console.log(mensaje);
-        //     if(mensaje != "1")
-        //     {
         /*!
          * jQuery blockUI plugin
          * Version 2.70.0-2014.11.23
@@ -657,8 +639,29 @@ $id_encuesta;
 
         })();
         $(document).ready(function() {
-            $.blockUI({
-                message: $('#pagopuntual')
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var id_curso = urlParams.get('id');
+            var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
+            let nombre_curso = document.title.slice(7);
+
+
+            var direccion = "https://encuestas.institutotesla.ar/back/pregunta_existe.php?ID=9&user=" + userid + "&id=" + id_curso;
+            $.ajax({
+                type: 'GET',
+                url: direccion,
+                //data: "encuestas=" + $('#encuesta_id').val(),
+                success: function(mensaje) {
+                    $('#respuesta').html(mensaje);
+                    console.log(mensaje);
+                    if (mensaje == 0) {
+                        $.blockUI({
+                            message: $('#pagopuntual')
+                        });
+                    } //cierre de llaves del if
+
+                    //cierre de llaves de la funcion de ajax 
+                }
             });
         });
 
@@ -669,36 +672,28 @@ $id_encuesta;
 
         }
         //
-        
-
-
-
-   // }//cierre de llaves del if
-
-//cierre de llaves de la funcion de ajax 
-    //}
-      //  });
     </script>
 </p>
 
 <div id="pagopuntual" height="100%" width="100%" style="cursor: default; display: none; overflow-y: hidden;">
 
-<button type="button" class="yui3-button-close" aria-hidden="true" onclick="cerrar()" style="padding: 10; cursor: pointer; float: right;  font-weight:bold;">X
+    <button type="button" class="yui3-button-close" aria-hidden="true" onclick="cerrar()" style="padding: 10; cursor: pointer; float: right;  font-weight:bold;">X
 </button>
-                <div id="contenido"></div>
-                
-<button onclick="cerrar();" class="btn btn-primary">Finalizar</button>
+    <div id="contenido"></div>
 
-<!-- Script para la extracccion de los datos de las pantallas -->
- <script>
+    <!-- <button onclick="cerrar();" class="btn btn-primary">Finalizar</button> -->
+
+    <!-- Script para la extracccion de los datos de las pantallas -->
+    <script>
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var id_curso = urlParams.get('id');
         var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
-        
-        let html= '<iframe style=" width: 100%; height: 400px;" src="https://encuestas.institutotesla.ar/popup/encuesta2.php?ID=<?php echo $id_encuesta ?>&user='+userid+'&curso='+nombre_curso+'&id='+id_curso+'" frameborder="0"></iframe>';
-            document.getElementById("contenido").innerHTML=html;
-    </script> 
+        var nombre_curso = document.title.slice(7)
+
+        let html = '<iframe style=" width: 100%; height: 400px;" src="https://encuestas.institutotesla.ar/popup/encuesta2.php??ID=<?php echo $id_encuesta ?>&user=' + userid + '&curso=' + nombre_curso + '&id=' + id_curso + '" frameborder="0"></iframe>';
+        document.getElementById("contenido").innerHTML = html;
+    </script>
 </div>
 
 
