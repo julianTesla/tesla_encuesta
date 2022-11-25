@@ -18,6 +18,7 @@ $sql2 = "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo, tipo_pregunta_i
     AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta";
 $resultado2 = mysqli_Query($conex, $sql2);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,3 +1,4 @@
 <?php
-$conex= mysqli_connect("localhost","root","","encuestas_tesla");
+$conex= mysqli_connect("localhost","root","","tesla_encuestas");
 ?>
+

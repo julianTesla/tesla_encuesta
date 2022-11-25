@@ -7,6 +7,7 @@ $resultado = mysqli_query($conex, $sql);
 
 $sql1 = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC";
 $resultado1 = mysqli_query($conex, $sql1);
+
 ?>
 
 <!-- INICIO BARRA DE FILTRO -->
@@ -60,12 +61,44 @@ $resultado1 = mysqli_query($conex, $sql1);
 </div>
 <!-- FIN BARRA DE FILTRO -->
 
+
+<?php
+//Trae comentarios
+$sql_comentarios = "SELECT * FROM `resultados` WHERE `respuesta_multiplechoice` = '0'";
+$sql_resultados = mysqli_query($conex, $sql_comentarios);
+
+
+
+?>
+
 <!-- INICIO COMENTARIO -->
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2" style="color:red">Alumno #1</h6>
+                <h6 class="m-2">  </h6>
+                <h6 class="m-2"> </h6>
+                <h6 class="m-2"></h6>
+            </div>
+            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+        </div>
+    </div>
+</div>
+<!-- FIN COMENTARIO -->
+
+<!-- INICIO COMENTARIO -->
+<php?
+while ($row2 = mysqli_fetch_array($resultado2)) {
+    $sql3 = "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo 
+    FROM preguntas, tipos_preguntas,encuestas WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
+    AND encuestas.id_encuesta = preguntas.encuesta_id ORDER BY id_pregunta";
+    $resultado3 = mysqli_Query($conex, $sql3);
+?> 
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded h-100 p-4">
+        <div class="testimonial-item text-center">
+            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
                 <h6 class="m-2">Encuesta 1</h6>
                 <h6 class="m-2">Electricista</h6>
                 <h6 class="m-2">31/10/2022</h6>
@@ -81,7 +114,6 @@ $resultado1 = mysqli_query($conex, $sql1);
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2" style="color:red">Alumno #1</h6>
                 <h6 class="m-2">Encuesta 1</h6>
                 <h6 class="m-2">Electricista</h6>
                 <h6 class="m-2">31/10/2022</h6>
@@ -97,7 +129,6 @@ $resultado1 = mysqli_query($conex, $sql1);
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2" style="color:red">Alumno #1</h6>
                 <h6 class="m-2">Encuesta 1</h6>
                 <h6 class="m-2">Electricista</h6>
                 <h6 class="m-2">31/10/2022</h6>
@@ -113,7 +144,6 @@ $resultado1 = mysqli_query($conex, $sql1);
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2" style="color:red">Alumno #1</h6>
                 <h6 class="m-2">Encuesta 1</h6>
                 <h6 class="m-2">Electricista</h6>
                 <h6 class="m-2">31/10/2022</h6>
@@ -129,7 +159,6 @@ $resultado1 = mysqli_query($conex, $sql1);
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2" style="color:red">Alumno #1</h6>
                 <h6 class="m-2">Encuesta 1</h6>
                 <h6 class="m-2">Electricista</h6>
                 <h6 class="m-2">31/10/2022</h6>
@@ -145,7 +174,6 @@ $resultado1 = mysqli_query($conex, $sql1);
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2" style="color:red">Alumno #1</h6>
                 <h6 class="m-2">Encuesta 1</h6>
                 <h6 class="m-2">Electricista</h6>
                 <h6 class="m-2">31/10/2022</h6>
@@ -161,7 +189,6 @@ $resultado1 = mysqli_query($conex, $sql1);
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2" style="color:red">Alumno #1</h6>
                 <h6 class="m-2">Encuesta 1</h6>
                 <h6 class="m-2">Electricista</h6>
                 <h6 class="m-2">31/10/2022</h6>
@@ -177,23 +204,6 @@ $resultado1 = mysqli_query($conex, $sql1);
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2" style="color:red">Alumno #1</h6>
-                <h6 class="m-2">Encuesta 1</h6>
-                <h6 class="m-2">Electricista</h6>
-                <h6 class="m-2">31/10/2022</h6>
-            </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-        </div>
-    </div>
-</div>
-<!-- FIN COMENTARIO -->
-
-<!-- INICIO COMENTARIO -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <div class="testimonial-item text-center">
-            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2" style="color:red">Alumno #1</h6>
                 <h6 class="m-2">Encuesta 1</h6>
                 <h6 class="m-2">Electricista</h6>
                 <h6 class="m-2">31/10/2022</h6>
