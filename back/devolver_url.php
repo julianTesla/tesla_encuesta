@@ -4,11 +4,38 @@ $id_encuesta;
 ?>
 <textarea id="p1" class="form-control" style="height: 30rem">
 
+
+
 <p>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery-1.8.0.js"></script>
 
     <script>
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var id_curso = urlParams.get('id');
+        var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
+
+
+
+        var direccion = "https://encuestas.institutotesla.ar/back/pregunta_existe.php?ID=<?php echo $id_encuesta; ?>&user=" + userid + "&id=" + id_curso + "";
+        $.ajax({
+            type: 'GET',
+            url: direccion,
+            //     //data: "encuestas=" + $('#encuesta_id').val(),
+            success: function(mensaje) {
+                //         $('#respuesta').html(mensaje);
+                console.log(mensaje);
+                if (mensaje != 1) {
+
+                    $(document).ready(function() {
+                        $.blockUI({
+                            message: $('#pagopuntual')
+                        });
+                    });
+                }
+            }
+        });
         /*!
          * jQuery blockUI plugin
          * Version 2.70.0-2014.11.23
@@ -325,14 +352,14 @@ $id_encuesta;
                     if (opts.theme && full) {
                         s = '<div class="blockUI ' + opts.blockMsgClass + ' blockPage ui-dialog ui-widget ui-corner-all" style="z-index:' + (z + 10) + ';display:none;position:fixed">';
                         if (opts.title) {
-                            s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || '&nbsp;') + '</div>';
+                            s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || ' ') + '</div>';
                         }
                         s += '<div class="ui-widget-content ui-dialog-content"></div>';
                         s += '</div>';
                     } else if (opts.theme) {
                         s = '<div class="blockUI ' + opts.blockMsgClass + ' blockElement ui-dialog ui-widget ui-corner-all" style="z-index:' + (z + 10) + ';display:none;position:absolute">';
                         if (opts.title) {
-                            s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || '&nbsp;') + '</div>';
+                            s += '<div class="ui-widget-header ui-dialog-titlebar ui-corner-all blockTitle">' + (opts.title || ' ') + '</div>';
                         }
                         s += '<div class="ui-widget-content ui-dialog-content"></div>';
                         s += '</div>';
@@ -638,38 +665,11 @@ $id_encuesta;
             }
 
         })();
-        $(document).ready(function() {
-            var queryString = window.location.search;
-            var urlParams = new URLSearchParams(queryString);
-            var id_curso = urlParams.get('id');
-            var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
-            let nombre_curso = document.title.slice(7);
 
-
-            var direccion = "https://encuestas.institutotesla.ar/back/pregunta_existe.php?ID=9&user=" + userid + "&id=" + id_curso;
-            $.ajax({
-                type: 'GET',
-                url: direccion,
-                //data: "encuestas=" + $('#encuesta_id').val(),
-                success: function(mensaje) {
-                    $('#respuesta').html(mensaje);
-                    console.log(mensaje);
-                    if (mensaje == 0) {
-                        $.blockUI({
-                            message: $('#pagopuntual')
-                        });
-                    } //cierre de llaves del if
-
-                    //cierre de llaves de la funcion de ajax 
-                }
-            });
-        });
 
         function cerrar() {
             //  setTimeout($.unblockUI, 0);
             $(".blockUI").remove();
-
-
         }
         //
     </script>
@@ -681,7 +681,7 @@ $id_encuesta;
 </button>
     <div id="contenido"></div>
 
-    <!-- <button onclick="cerrar();" class="btn btn-primary">Finalizar</button> -->
+    <!--<button onclick="cerrar();" class="btn btn-primary">Finalizar</button>-->
 
     <!-- Script para la extracccion de los datos de las pantallas -->
     <script>
@@ -689,9 +689,9 @@ $id_encuesta;
         var urlParams = new URLSearchParams(queryString);
         var id_curso = urlParams.get('id');
         var userid = document.getElementById("nav-notification-popover-container").getAttribute("data-userid");
-        var nombre_curso = document.title.slice(7)
+        var nombre_curso = document.title.slice(7);
 
-        let html = '<iframe style=" width: 100%; height: 400px;" src="https://encuestas.institutotesla.ar/popup/encuesta2.php??ID=<?php echo $id_encuesta ?>&user=' + userid + '&curso=' + nombre_curso + '&id=' + id_curso + '" frameborder="0"></iframe>';
+        let html = '<iframe style=" width: 100%; height: 400px;" src="https://encuestas.institutotesla.ar/popup/encuesta2.php?ID=<?php echo $id_encuesta; ?>&user=' + userid + '&curso=' + nombre_curso + '&id=' + id_curso + '" frameborder="0"></iframe>';
         document.getElementById("contenido").innerHTML = html;
     </script>
 </div>

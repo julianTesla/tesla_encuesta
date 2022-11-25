@@ -84,7 +84,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             {
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
                                     echo '<div class="form-check d-flex justify-content-rigth p-0">
-                                <input class="form-check-input m-1" type="radio" name="respuesta'.$cont.'" value="' . $row3['descripcion'] . '" >
+                                <input class="form-check-input m-1" type="radio" name="respuesta'.$cont.'" value="' . $row3['descripcion'] . '" required>
                                 <label class="form-check-label m-0" for="radio3Example1">
                                 ' . $row3['descripcion'] . '
                                 </label>
