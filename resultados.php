@@ -327,7 +327,7 @@ $resultado1 = mysqli_query($conex, $sql1);
             <div class="bg-secondary rounded h-100 p-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h4 class="mb-0">Comentarios/Sugerencias</h4>
-                    <a href="/tesla_encuesta/comentarios.php" class="btn btn-link rounded-pill m-2">Ver todos</a>
+                    <a href="comentarios.php" class="btn btn-link rounded-pill m-2">Ver todos</a>
                 </div>
 
                 <div class="d-flex align-items-center justify-content-between mb-4">
