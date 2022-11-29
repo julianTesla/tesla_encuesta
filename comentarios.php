@@ -63,156 +63,28 @@ $resultado1 = mysqli_query($conex, $sql1);
 
 
 <?php
-//Trae comentarios
-$sql_comentarios = "SELECT * FROM `resultados` WHERE `respuesta_multiplechoice` = '0'";
-$sql_resultados = mysqli_query($conex, $sql_comentarios);
+$sql3 = "SELECT `resultados.resultado_encuesta_id` FROM `resultados` WHERE 1;";
 
+$resultado3 = mysqli_Query($conex, $sql3);
+while ($row2 = mysqli_fetch_array($resultado3)) {
 
-
-?>
-
-<!-- INICIO COMENTARIO -->
+    echo '<!-- INICIO COMENTARIO -->
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">  </h6>
-                <h6 class="m-2"> </h6>
+                <h6 class="m-2">'.$row2[0].'</h6>
+                <h6 class="m-2"></h6>
                 <h6 class="m-2"></h6>
             </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+            <p class="mb-0"></p>
         </div>
     </div>
 </div>
-<!-- FIN COMENTARIO -->
+<!-- FIN COMENTARIO -->';
 
-<!-- INICIO COMENTARIO -->
-<php?
-while ($row2 = mysqli_fetch_array($resultado2)) {
-    $sql3 = "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo 
-    FROM preguntas, tipos_preguntas,encuestas WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
-    AND encuestas.id_encuesta = preguntas.encuesta_id ORDER BY id_pregunta";
-    $resultado3 = mysqli_Query($conex, $sql3);
+}
 ?> 
-
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <div class="testimonial-item text-center">
-            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">Encuesta 1</h6>
-                <h6 class="m-2">Electricista</h6>
-                <h6 class="m-2">31/10/2022</h6>
-            </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-        </div>
-    </div>
-</div>
-<!-- FIN COMENTARIO -->
-
-<!-- INICIO COMENTARIO -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <div class="testimonial-item text-center">
-            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">Encuesta 1</h6>
-                <h6 class="m-2">Electricista</h6>
-                <h6 class="m-2">31/10/2022</h6>
-            </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-        </div>
-    </div>
-</div>
-<!-- FIN COMENTARIO -->
-
-<!-- INICIO COMENTARIO -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <div class="testimonial-item text-center">
-            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">Encuesta 1</h6>
-                <h6 class="m-2">Electricista</h6>
-                <h6 class="m-2">31/10/2022</h6>
-            </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-        </div>
-    </div>
-</div>
-<!-- FIN COMENTARIO -->
-
-<!-- INICIO COMENTARIO -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <div class="testimonial-item text-center">
-            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">Encuesta 1</h6>
-                <h6 class="m-2">Electricista</h6>
-                <h6 class="m-2">31/10/2022</h6>
-            </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-        </div>
-    </div>
-</div>
-<!-- FIN COMENTARIO -->
-
-<!-- INICIO COMENTARIO -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <div class="testimonial-item text-center">
-            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">Encuesta 1</h6>
-                <h6 class="m-2">Electricista</h6>
-                <h6 class="m-2">31/10/2022</h6>
-            </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-        </div>
-    </div>
-</div>
-<!-- FIN COMENTARIO -->
-
-<!-- INICIO COMENTARIO -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <div class="testimonial-item text-center">
-            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">Encuesta 1</h6>
-                <h6 class="m-2">Electricista</h6>
-                <h6 class="m-2">31/10/2022</h6>
-            </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-        </div>
-    </div>
-</div>
-<!-- FIN COMENTARIO -->
-
-<!-- INICIO COMENTARIO -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <div class="testimonial-item text-center">
-            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">Encuesta 1</h6>
-                <h6 class="m-2">Electricista</h6>
-                <h6 class="m-2">31/10/2022</h6>
-            </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-        </div>
-    </div>
-</div>
-<!-- FIN COMENTARIO -->
-
-<!-- INICIO COMENTARIO -->
-<div class="container-fluid pt-4 px-4">
-    <div class="bg-secondary rounded h-100 p-4">
-        <div class="testimonial-item text-center">
-            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">Encuesta 1</h6>
-                <h6 class="m-2">Electricista</h6>
-                <h6 class="m-2">31/10/2022</h6>
-            </div>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-        </div>
-    </div>
-</div>
-<!-- FIN COMENTARIO -->
 
 <script>
     $(document).ready(function() {
@@ -220,6 +92,28 @@ while ($row2 = mysqli_fetch_array($resultado2)) {
             style: 'form-control'
         });
     });
+</script>
+<script>
+    
+    function filtrar(){
+            
+        curso= document.getElementById('curso').value;
+        encuesta= document.getElementById('encuesta').value;
+        f1= document.getElementById('f1');
+        f2= document.getElementById('f2');
+
+        $.ajax({
+        data: {"curso":curso, "encuesta":encuesta, "f1":f1, "f2":f2},
+        url: 'filtrar_comentarios.php',
+        type: 'POST',
+        success: function(mensaje)
+        {
+          $('#respuesta').html(mensaje);
+        }
+        });
+
+    }
+
 </script>
 
 <?php
