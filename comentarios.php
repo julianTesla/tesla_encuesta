@@ -73,7 +73,7 @@ while ($row2 = mysqli_fetch_array($resultado3)) {
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">'.$row2[0].'</h6>
+                <h6 class="m-2">' . $row2[0] . '</h6>
                 <h6 class="m-2"></h6>
                 <h6 class="m-2"></h6>
             </div>
@@ -82,9 +82,8 @@ while ($row2 = mysqli_fetch_array($resultado3)) {
     </div>
 </div>
 <!-- FIN COMENTARIO -->';
-
 }
-?> 
+?>
 
 <script>
     $(document).ready(function() {
@@ -94,28 +93,30 @@ while ($row2 = mysqli_fetch_array($resultado3)) {
     });
 </script>
 <script>
-    
-    function filtrar(){
-            
-        curso= document.getElementById('curso').value;
-        encuesta= document.getElementById('encuesta').value;
-        f1= document.getElementById('f1');
-        f2= document.getElementById('f2');
+    function filtrar() {
+
+        curso = document.getElementById('curso').value;
+        encuesta = document.getElementById('encuesta').value;
+        f1 = document.getElementById('f1');
+        f2 = document.getElementById('f2');
 
         $.ajax({
-        data: {"curso":curso, "encuesta":encuesta, "f1":f1, "f2":f2},
-        url: 'filtrar_comentarios.php',
-        type: 'POST',
-        success: function(mensaje)
-        {
-          $('#respuesta').html(mensaje);
-        }
+            data: {
+                "curso": curso,
+                "encuesta": encuesta,
+                "f1": f1,
+                "f2": f2
+            },
+            url: 'filtrar_comentarios.php',
+            type: 'POST',
+            success: function(mensaje) {
+                $('#respuesta').html(mensaje);
+            }
         });
 
     }
-
 </script>
 
 <?php
 include "parte_inferior.php";
-?>git 
+?>
