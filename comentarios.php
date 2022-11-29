@@ -63,7 +63,10 @@ $resultado1 = mysqli_query($conex, $sql1);
 
 
 <?php
-$sql3 = "SELECT `resultados.resultado_encuesta_id` FROM `resultados` WHERE 1;";
+$sql3 = "SELECT nombre_encuesta, nombre_curso, fecha, respuesta_text 
+FROM cursos, encuestas, resultados WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id 
+AND resultados.resultado_curso_id = cursos.id_curso AND resultados.respuesta_text != '0' 
+ORDER BY encuestas.id_encuesta DESC;";
 
 $resultado3 = mysqli_Query($conex, $sql3);
 while ($row2 = mysqli_fetch_array($resultado3)) {
@@ -74,10 +77,10 @@ while ($row2 = mysqli_fetch_array($resultado3)) {
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
                 <h6 class="m-2">' . $row2[0] . '</h6>
-                <h6 class="m-2"></h6>
-                <h6 class="m-2"></h6>
+                <h6 class="m-2">'.$row2[1].'</h6>
+                <h6 class="m-2">'.$row2[2].'</h6>
             </div>
-            <p class="mb-0"></p>
+            <p class="mb-0">'.$row2[3].'</p>
         </div>
     </div>
 </div>
