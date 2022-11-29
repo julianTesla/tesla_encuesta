@@ -118,4 +118,4 @@ while ($row2 = mysqli_fetch_array($resultado3)) {
 
 <?php
 include "parte_inferior.php";
-?>
+?>git 
