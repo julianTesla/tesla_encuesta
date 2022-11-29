@@ -15,7 +15,7 @@ while ($row = mysqli_fetch_array($resultado)) {
 $sql2 = "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo, tipo_pregunta_id 
     FROM encuestas,preguntas,tipos_preguntas WHERE encuestas.id_encuesta = '$id_encuesta' 
     AND encuestas.id_encuesta = preguntas.encuesta_id 
-    AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta";
+    AND preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta ORDER BY preguntas.id_pregunta";
 $resultado2 = mysqli_Query($conex, $sql2);
 ?>
 
@@ -85,6 +85,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             {
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
                                     echo '<div class="form-check d-flex justify-content-rigth p-0">
+                                    <input type="int" name="id_pregunta'.$cont.'" value="'.$row3['pregunta_id'].'" style="display:none; position:relative;"> 
                                 <input class="form-check-input m-1" type="radio" name="respuesta'.$cont.'" value="' . $row3['descripcion'] . '" required>
                                 <label class="form-check-label m-0" for="radio3Example1">
                                 ' . $row3['descripcion'] . '
@@ -102,6 +103,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             while ($row3 = mysqli_fetch_array($resultado3)) {
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
                                     echo '<div class="form-outline m-0">
+                                    <input type="int" name="id_pregunta'.$cont.'" value="'.$row3['pregunta_id'].'" style="display:none; position:relative;">
                                     <textarea class="form-control" name="texto'.$cont.'" rows="4" placeholder="' . $row3['descripcion'] . '"></textarea>
                                     <label class="form-label" for="form4Example3" style="color:#808488">Opcional</label>
                                 </div>';
