@@ -322,6 +322,17 @@ $resultado1 = mysqli_query($conex, $sql1);
         </div> -->
 
 
+<?php
+$sql3 = "SELECT nombre_encuesta, nombre_curso, nombre_pregunta, fecha, respuesta_text 
+FROM encuestas, cursos, preguntas, resultados 
+WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id 
+AND preguntas.id_pregunta = resultados.pregunta_id 
+AND resultados.resultado_curso_id = cursos.id_curso 
+AND resultados.respuesta_text != '0'";
+
+$resultado3 = mysqli_Query($conex, $sql3);
+?>
+
         <!-- INICIO PREVIEW COMENTARIOS -->
         <div class="container-fluid pt-4 px-4">
             <div class="bg-secondary rounded h-100 p-4">
@@ -333,60 +344,23 @@ $resultado1 = mysqli_query($conex, $sql1);
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <div class="owl-carousel testimonial-carousel">
 
-                        <!-- <div class="testimonial-item text-center">
-                            <h5 class="mb-1">Alumno #1</h5>
-                            <h6 class="text-primary">Encuesta 1</h6>
-                            <p>24/10/2022</p>
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-                        </div> -->
-
-                        <!-- INICIO TESTIMONIO -->
+                        <?php
+                        while ($row2 = mysqli_fetch_array($resultado3)) {
+                            echo '
+                            <!-- INICIO TESTIMONIO -->
                         <div class="testimonial-item text-center">
                             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                                <h6 class="m-2" style="color:red">Alumno #1</h6>
-                                <h6 class="m-2">Encuesta 1</h6>
-                                <h6 class="m-2">Electricista</h6>
-                                <h6 class="m-2">31/10/2022</h6>
+                            <h6 class="m-2">Encuesta: ' . $row2[0] . '</h6>
+                            <h6 class="m-2">Curso: '.$row2[1].'</h6>
+                            <h6 class="m-2">Pregunta: '.$row2[2].'</h6>
+                            <h6 class="m-2">'.$row2[3].'</h6>
                             </div>
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
+                            <p class="mb-0">'.$row2[4].'</p>
                         </div>
                         <!-- FIN TESTIMONIO -->
-
-                        <!-- INICIO TESTIMONIO -->
-                        <div class="testimonial-item text-center">
-                            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                                <h6 class="m-2" style="color:red">Alumno #2</h6>
-                                <h6 class="m-2">Encuesta 1</h6>
-                                <h6 class="m-2">Gasista</h6>
-                                <h6 class="m-2">27/10/2022</h6>
-                            </div>
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-                        </div>
-                        <!-- FIN TESTIMONIO -->
-
-                        <!-- INICIO TESTIMONIO -->
-                        <div class="testimonial-item text-center">
-                            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                                <h6 class="m-2" style="color:red">Alumno #4</h6>
-                                <h6 class="m-2">Encuesta 3</h6>
-                                <h6 class="m-2">Electricista</h6>
-                                <h6 class="m-2">24/10/2022</h6>
-                            </div>
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-                        </div>
-                        <!-- FIN TESTIMONIO -->
-
-                        <!-- INICIO TESTIMONIO -->
-                        <div class="testimonial-item text-center">
-                            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                                <h6 class="m-2" style="color:red">Alumno #7</h6>
-                                <h6 class="m-2">Encuesta 3</h6>
-                                <h6 class="m-2">Excel</h6>
-                                <h6 class="m-2">22/10/2022</h6>
-                            </div>
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quis earum fuga nemo sed reprehenderit! Voluptas ratione voluptates dolorum consequatur iste repudiandae voluptate, laborum, veniam, molestiae exercitationem magnam facilis aperiam.</p>
-                        </div>
-                        <!-- FIN TESTIMONIO -->
+                            ';
+                        }
+                        ?>
 
                     </div>
                 </div>
