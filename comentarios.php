@@ -16,9 +16,10 @@ $resultado1 = mysqli_query($conex, $sql1);
         <i class="fa fa-exclamation-circle me-2"></i> ¡Pantalla en construcción!
     </div>
     <div class="bg-secondary rounded h-100 p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="d-flex align-items-center justify-content-between">
 
             <form action="">
+                
                 <select class="form-select js-example-basic-single" style="width: 110%;" id="curso">
                     <option>Seleccionar curso</option>
                     <?php
@@ -77,9 +78,9 @@ while ($row2 = mysqli_fetch_array($resultado3)) {
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">' . $row2[0] . '</h6>
-                <h6 class="m-2">'.$row2[1].'</h6>
-                <h6 class="m-2">'.$row2[2].'</h6>
+                <h6 class="m-2">Encuesta: ' . $row2[0] . '</h6>
+                <h6 class="m-2">Curso: '.$row2[1].'</h6>
+                <h6 class="m-2">Pregunta: '.$row2[2].'</h6>
                 <h6 class="m-2">'.$row2[3].'</h6>
             </div>
             <p class="mb-0">'.$row2[4].'</p>
