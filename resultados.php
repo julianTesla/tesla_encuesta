@@ -328,7 +328,8 @@ FROM encuestas, cursos, preguntas, resultados
 WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id 
 AND preguntas.id_pregunta = resultados.pregunta_id 
 AND resultados.resultado_curso_id = cursos.id_curso 
-AND resultados.respuesta_text != '0'";
+AND resultados.respuesta_text != '0'
+ORDER BY id_resultado DESC LIMIT 5";
 
 $resultado3 = mysqli_Query($conex, $sql3);
 ?>

@@ -68,7 +68,7 @@ $sql3 = "SELECT nombre_encuesta, nombre_curso, nombre_pregunta, fecha, respuesta
 FROM cursos, encuestas, resultados, preguntas WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id
 AND preguntas.id_pregunta= resultados.pregunta_id 
 AND resultados.resultado_curso_id = cursos.id_curso AND resultados.respuesta_text != '0' 
-ORDER BY encuestas.id_encuesta DESC;";
+ORDER BY id_resultado DESC";
 
 $resultado3 = mysqli_Query($conex, $sql3);
 while ($row2 = mysqli_fetch_array($resultado3)) {
