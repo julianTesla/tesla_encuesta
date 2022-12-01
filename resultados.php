@@ -63,254 +63,58 @@ $resultado1 = mysqli_query($conex, $sql1);
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
 
-        <!-- INICIO CONTENEDOR ENCUESTA -->
-        <div class="col-sm-12 col-md-6 col-xl-4">
+
+<?php
+/*Consultas sql para traer los datos de los datos de las encuestas, preguntas, opciones */
+$sqlENC= "SELECT * FROM encuestas ";
+$resultadoENC= mysqli_Query($conex,$sqlENC);
+
+while($rowENC= mysqli_fetch_array($resultadoENC))
+{
+       echo '<!-- INICIO CONTENEDOR ENCUESTA -->
+       <div class="col-sm-12 col-md-6 col-xl-4">
             <div class="h-100 bg-secondary rounded p-4" id=encuesta>
-                <div class="bg-secondary text-center rounded p-4">
-                    <h2>Encuesta N° 1</h2>
-                </div>
 
                 <div class="bg-secondary text-center rounded p-4">
-                    <h5 style="color:red">¿Cómo evaluarías el contenido del curso?</h5>
+                    <h2>'.$rowENC['nombre_encuesta'].'</h2>
+                </div>';
+                
 
-                    <h6>Bueno</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-                        </div>
-                    </div>
+$sqlPRE= "SELECT id_pregunta, encuesta_id, nombre_pregunta, tipo_pregunta_id 
+FROM preguntas WHERE tipo_pregunta_id = 1";
+$resultadoPRE= mysqli_query($conex, $sqlPRE);
+            while($rowPRE= mysqli_fetch_array($resultadoPRE))
+            {
+                if($rowPRE['encuesta_id'] == $rowENC['id_encuesta'])
+                {
+                echo'<div class="bg-secondary text-center rounded p-4">
+                    <h5 style="color:red">'.$rowPRE['nombre_pregunta'].'</h5>';
 
-                    <h6>Regular</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </div>
-                    </div>
 
-                    <h6>Malo</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-secondary text-center rounded p-4">
-                    <h5 style="color:red">¿Cómo evaluarías al profesor?</h5>
+$sqlOPC= "SELECT descripcion, pregunta_id FROM opciones";
+$resultadoOPC= mysqli_Query($conex, $sqlOPC);
+                    while($rowOPC= mysqli_fetch_array($resultadoOPC))
+                    {
+                        if($rowPRE['id_pregunta'] == $rowOPC['pregunta_id'])
+                        {
+                        echo'<h6>'.$rowOPC['descripcion'].'</h6>
+                        <div class="pg-bar mb-3">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100">86%</div>
+                            </div>
+                        </div>';
+                        }
+                    }
 
-                    <h6>Bueno</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-                        </div>
-                    </div>
-
-                    <h6>Regular</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                        </div>
-                    </div>
-
-                    <h6>Malo</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">5%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-secondary text-center rounded p-4">
-                    <h5 style="color:red">¿Que te pareció la limpieza edilicia?</h5>
-
-                    <h6>Bueno</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-                        </div>
-                    </div>
-
-                    <h6>Regular</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                        </div>
-                    </div>
-
-                    <h6>Malo</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                echo '</div>';
+                }
+            }
+           echo ' </div>
         </div>
-        <!-- FIN CONTENEDOR ENCUESTA -->
-
-        <!-- INICIO CONTENEDOR ENCUESTA -->
-        <div class="col-sm-12 col-md-6 col-xl-4">
-            <div class="h-100 bg-secondary rounded p-4" id=encuesta>
-                <div class="bg-secondary text-center rounded p-4">
-                    <h2>Encuesta N° 2</h2>
-                </div>
-
-                <div class="bg-secondary text-center rounded p-4">
-                    <h5 style="color:red">¿Pregunta 1?</h5>
-
-                    <h6>Bueno</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-                        </div>
-                    </div>
-
-                    <h6>Regular</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                        </div>
-                    </div>
-
-                    <h6>Malo</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-secondary text-center rounded p-4">
-                    <h5 style="color:red">¿Pregunta 2?</h5>
-
-                    <h6>Bueno</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-                        </div>
-                    </div>
-
-                    <h6>Regular</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                        </div>
-                    </div>
-
-                    <h6>Malo</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-secondary text-center rounded p-4">
-                    <h5 style="color:red">¿Pregunta 3?</h5>
-
-                    <h6>Bueno</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-                        </div>
-                    </div>
-
-                    <h6>Regular</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                        </div>
-                    </div>
-
-                    <h6>Malo</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FIN CONTENEDOR ENCUESTA -->
-
-        <!-- INICIO CONTENEDOR ENCUESTA -->
-        <div class="col-sm-12 col-md-6 col-xl-4">
-            <div class="h-100 bg-secondary rounded p-4" id=encuesta>
-                <div class="bg-secondary text-center rounded p-4">
-                    <h2>Encuesta N° 3</h2>
-                </div>
-
-                <div class="bg-secondary text-center rounded p-4">
-                    <h5 style="color:red">¿Pregunta 1?</h5>
-
-                    <h6>Bueno</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-                        </div>
-                    </div>
-
-                    <h6>Regular</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                        </div>
-                    </div>
-
-                    <h6>Malo</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-secondary text-center rounded p-4">
-                    <h5 style="color:red">¿Pregunta 2?</h5>
-
-                    <h6>Bueno</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-                        </div>
-                    </div>
-
-                    <h6>Regular</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                        </div>
-                    </div>
-
-                    <h6>Malo</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-secondary text-center rounded p-4">
-                    <h5 style="color:red">¿Pregunta 3?</h5>
-
-                    <h6>Bueno</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-                        </div>
-                    </div>
-
-                    <h6>Regular</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                        </div>
-                    </div>
-
-                    <h6>Malo</h6>
-                    <div class="pg-bar mb-3">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FIN CONTENEDOR ENCUESTA -->
+        <!-- FIN CONTENEDOR ENCUESTA -->';
+}
+?>
+       
 
 
         <!-- <div class="col-sm-12 col-md-6 col-xl-4">

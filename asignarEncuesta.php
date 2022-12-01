@@ -61,20 +61,8 @@ include "conexion/conex.php";
     //script para hacer el buscado de encuestas
     function asignar_encuesta() {
 
-        var xhr = new XMLHttpRequest();
-        var url= "https://valoraciones.000webhostapp.com/valoraciones/porsentages.php";
-        xhr.open("get", url );
         
-        xhr.onreadystatechange= function(){
-            console.log(xhr.readyState);
-            if(xhr.readyState == 4 && xhr.status == 200){
-                var contenido=document.getElementById('respuesta');
-                console.log(xhr.responseText);
-                contenido.innerHTML = xhr.responseText;
-            }
-        }
-        xhr.send();
-        /*var direccion= "back/devolver_url.php";
+        var direccion= "back/devolver_url.php";
         $.ajax({
             type: 'POST',
             url: direccion,
@@ -83,7 +71,7 @@ include "conexion/conex.php";
                 $('#respuesta').html(mensaje);
                 console.log(mensaje);
             }
-        });*/
+        });
     }
 </script>
 

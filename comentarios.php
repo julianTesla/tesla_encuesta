@@ -14,6 +14,20 @@ $resultado1 = mysqli_query($conex, $sql1);
 <div class="container-fluid pt-4 px-4">
     <div class="bg-secondary rounded h-100 p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
+            
+
+        <form action="">
+                <select class="form-select js-example-basic-single" style="width: 110%;" id="encuesta">
+                    <option value="0" >Seleccionar encuesta</option>
+                    <?php
+                    $sql1 = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC ";
+                    $resultado1 = mysqli_query($conex, $sql1);
+                    while ($row1 = mysqli_fetch_array($resultado1)) {
+                        echo '<option value="' . $row1[0] . '">' . $row1[1] . '</option>';
+                    }
+                    ?>
+                </select>
+            </form>
 
             <form action="">
                 <select class="form-select js-example-basic-single" style="width: 110%;" id="curso">
@@ -23,19 +37,6 @@ $resultado1 = mysqli_query($conex, $sql1);
                     $resultado = mysqli_query($conex, $sql);
                     while ($row = mysqli_fetch_array($resultado)) {
                         echo '<option value="' . $row[0] . '">' .$row[1] . '</option>';
-                    }
-                    ?>
-                </select>
-            </form>
-
-            <form action="">
-                <select class="form-select js-example-basic-single" style="width: 110%;" id="encuesta">
-                    <option value="0" >Seleccionar encuesta</option>
-                    <?php
-                    $sql1 = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC ";
-                    $resultado1 = mysqli_query($conex, $sql1);
-                    while ($row1 = mysqli_fetch_array($resultado1)) {
-                        echo '<option value="' . $row1[0] . '">' . $row1[1] . '</option>';
                     }
                     ?>
                 </select>
