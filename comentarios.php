@@ -16,12 +16,11 @@ $resultado1 = mysqli_query($conex, $sql1);
         <i class="fa fa-exclamation-circle me-2"></i> ¡Pantalla en construcción!
     </div>
     <div class="bg-secondary rounded h-100 p-4">
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between mb-4">
 
             <form action="">
-                
                 <select class="form-select js-example-basic-single" style="width: 110%;" id="curso">
-                    <option>Seleccionar curso</option>
+                    <option value="0">Seleccionar curso</option>
                     <?php
                     $sql = "SELECT id_curso, nombre_curso FROM cursos ORDER BY cursos.id_curso DESC";
                     $resultado = mysqli_query($conex, $sql);
@@ -34,7 +33,7 @@ $resultado1 = mysqli_query($conex, $sql1);
 
             <form action="">
                 <select class="form-select js-example-basic-single" style="width: 110%;" id="encuesta">
-                    <option >Seleccionar encuesta</option>
+                    <option value="0" >Seleccionar encuesta</option>
                     <?php
                     $sql1 = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC ";
                     $resultado1 = mysqli_query($conex, $sql1);
@@ -68,7 +67,7 @@ $sql3 = "SELECT nombre_encuesta, nombre_curso, nombre_pregunta, fecha, respuesta
 FROM cursos, encuestas, resultados, preguntas WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id
 AND preguntas.id_pregunta= resultados.pregunta_id 
 AND resultados.resultado_curso_id = cursos.id_curso AND resultados.respuesta_text != '0' 
-ORDER BY id_resultado DESC";
+ORDER BY encuestas.id_encuesta DESC;";
 
 $resultado3 = mysqli_Query($conex, $sql3);
 while ($row2 = mysqli_fetch_array($resultado3)) {
@@ -78,9 +77,9 @@ while ($row2 = mysqli_fetch_array($resultado3)) {
     <div class="bg-secondary rounded h-100 p-4">
         <div class="testimonial-item text-center">
             <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                <h6 class="m-2">Encuesta: ' . $row2[0] . '</h6>
-                <h6 class="m-2">Curso: '.$row2[1].'</h6>
-                <h6 class="m-2">Pregunta: '.$row2[2].'</h6>
+                <h6 class="m-2">' . $row2[0] . '</h6>
+                <h6 class="m-2">'.$row2[1].'</h6>
+                <h6 class="m-2">'.$row2[2].'</h6>
                 <h6 class="m-2">'.$row2[3].'</h6>
             </div>
             <p class="mb-0">'.$row2[4].'</p>
