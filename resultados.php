@@ -71,6 +71,8 @@ $resultadoENC= mysqli_Query($conex,$sqlENC);
 
 while($rowENC= mysqli_fetch_array($resultadoENC))
 {
+    $id_encuesta= $rowENC['id_encuesta'];
+
        echo '<!-- INICIO CONTENEDOR ENCUESTA -->
        <div class="col-sm-12 col-md-6 col-xl-4">
             <div class="h-100 bg-secondary rounded p-4" id=encuesta>
@@ -85,6 +87,8 @@ FROM preguntas WHERE tipo_pregunta_id = 1";
 $resultadoPRE= mysqli_query($conex, $sqlPRE);
             while($rowPRE= mysqli_fetch_array($resultadoPRE))
             {
+                $id_pregunta = $rowPRE['id_pregunta'];
+
                 if($rowPRE['encuesta_id'] == $rowENC['id_encuesta'])
                 {
                 echo'<div class="bg-secondary text-center rounded p-4">
@@ -97,10 +101,37 @@ $resultadoOPC= mysqli_Query($conex, $sqlOPC);
                     {
                         if($rowPRE['id_pregunta'] == $rowOPC['pregunta_id'])
                         {
+
+$sqlRES= "SELECT id_encuesta, id_pregunta, fecha, respuesta_multiplechoice 
+FROM cursos, encuestas, resultados, preguntas WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id 
+AND resultados.resultado_curso_id = cursos.id_curso AND resultados.respuesta_multiplechoice != '0' 
+AND preguntas.id_pregunta = resultados.pregunta_id AND preguntas.id_pregunta = $id_pregunta";    
+$resultadoRES= mysqli_query($conex, $sqlRES);
+
+if(mysqli_num_rows($resultadoRES)>0)
+{
+    
+    $acum= 0;
+    $contOPC= 0;
+    while($rowRES= mysqli_fetch_array($resultadoRES))
+    {
+        $acum++;
+        if($rowRES['respuesta_multiplechoice'] == $rowOPC['descripcion'] )
+        {
+            $rowRES['respuesta_multiplechoice'];
+            $contOPC++;
+        }
+    }
+    $total = round( 100/$acum*$contOPC);
+    
+}
+else
+{ $total= 0; }
+//$total = round( 100/$acum*$contOPC);
                         echo'<h6>'.$rowOPC['descripcion'].'</h6>
                         <div class="pg-bar mb-3">
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100">86%</div>
+                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="'.$total.'" aria-valuemin="0" aria-valuemax="100">'.$total.'%</div>
                             </div>
                         </div>';
                         }
