@@ -17,10 +17,23 @@ $resultado1 = mysqli_query($conex, $sql1);
     </div>
     <div class="bg-secondary rounded h-100 p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
+            
 
             <form action="">
+                <!-- <label>Seleccionar encuesta</label> -->
+                <select class="form-select js-example-basic-single" style="width: 110%;" id="encuesta">
+                    <option value="0">Seleccionar encuesta</option>
+                    <?php
+                    while ($row1 = mysqli_fetch_array($resultado1)) {
+                        echo '<option value="' . $row1[0] . '">' . $row1[1] . '</option>';
+                    }
+                    ?>
+                </select>
+            </form>
+             
+            <form action="">
                 <!-- <label>Seleccionar curso</label> -->
-                <select class="form-select js-example-basic-single" style="width: 110%;">
+                <select class="form-select js-example-basic-single" style="width: 110%;" id="curso">
                     <option value="0">Seleccionar curso</option>
                     <?php
                     while ($row = mysqli_fetch_array($resultado)) {
@@ -30,28 +43,16 @@ $resultado1 = mysqli_query($conex, $sql1);
                 </select>
             </form>
 
-            <form action="">
-                <!-- <label>Seleccionar encuesta</label> -->
-                <select class="form-select js-example-basic-single" style="width: 110%;">
-                    <option value="0">Seleccionar encuesta</option>
-                    <?php
-                    while ($row1 = mysqli_fetch_array($resultado1)) {
-                        echo '<option value="' . $row1[0] . '">' . $row1[1] . '</option>';
-                    }
-                    ?>
-                </select>
-            </form>
-
             <div class="form-item">
                 <label>Fecha desde</label>
-                <input class="input-sm form-control" type=date style="background-color:red; color:white">
+                <input class="input-sm form-control" type=date style="background-color:red; color:white" id="f1">
             </div>
             <div class="form-item">
                 <label>Fecha hasta</label>
-                <input class="input-sm form-control" type=date style="background-color:red; color:white">
+                <input class="input-sm form-control" type=date style="background-color:red; color:white" id="f2">
             </div>
 
-            <button class="btn btn-primary m-2">Buscar</button>
+            <button class="btn btn-primary m-2" onclick="filtrar();">Buscar</button>
 
         </div>
     </div>
@@ -61,7 +62,7 @@ $resultado1 = mysqli_query($conex, $sql1);
 
 <!-- INICIO RESULTADOS -->
 <div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
+    <div class="row g-4" id="respuesta">
 
 
 <?php
@@ -81,7 +82,6 @@ while($rowENC= mysqli_fetch_array($resultadoENC))
                     <h2>'.$rowENC['nombre_encuesta'].'</h2>
                 </div>';
                 
-
 $sqlPRE= "SELECT id_pregunta, encuesta_id, nombre_pregunta, tipo_pregunta_id 
 FROM preguntas WHERE tipo_pregunta_id = 1";
 $resultadoPRE= mysqli_query($conex, $sqlPRE);
@@ -145,7 +145,7 @@ else
         <!-- FIN CONTENEDOR ENCUESTA -->';
 }
 ?>
-       
+
 
 
         <!-- <div class="col-sm-12 col-md-6 col-xl-4">
@@ -214,6 +214,31 @@ $resultado3 = mysqli_Query($conex, $sql3);
             style: 'form-control'
         });
     });
+</script>
+
+<script>
+    function filtrar() {
+
+        curso = document.getElementById('curso').value;
+        encuesta = document.getElementById('encuesta').value;
+        f1 = document.getElementById('f1').value;
+        f2 = document.getElementById('f2').value;
+
+        $.ajax({
+            data: {
+                "curso": curso,
+                "encuesta": encuesta,
+                "f1": f1,
+                "f2": f2
+            },
+            url: 'back/filtrar_encuestas.php',
+            type: 'POST',
+            success: function(mensaje) {
+                $('#respuesta').html(mensaje);
+            }
+        });
+
+    }
 </script>
 <?php
 include "parte_inferior.php";
