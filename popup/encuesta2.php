@@ -74,6 +74,7 @@ $resultado2 = mysqli_Query($conex, $sql2);
                     ?>
                         <p class="text-center m-1"><strong><?php echo $row2['nombre_pregunta'] ?></strong></p>
                     <?php
+                    $contOPC = 1;
                         if ($row2['tipo_pregunta_id'] == 1) {
                             $sql3 = "SELECT pregunta_id, descripcion, id_opciones 
                         FROM preguntas, tipos_preguntas,encuestas,opciones 
@@ -86,13 +87,15 @@ $resultado2 = mysqli_Query($conex, $sql2);
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
                                     echo '<div class="form-check d-flex justify-content-rigth p-0">
                                     <input type="int" name="id_pregunta'.$cont.'" value="'.$row3['pregunta_id'].'" style="display:none; position:relative;"> 
-                                <input class="form-check-input m-1" type="radio" name="respuesta'.$cont.'" value="' . $row3['descripcion'] . '" required>
+                                <input class="form-check-input m-1" type="radio" name="respuesta'.$cont.'" value="' . $row3['id_opciones'] . '" required>
                                 <label class="form-check-label m-0" for="radio3Example1">
                                 ' . $row3['descripcion'] . '
                                 </label>
                             </div>';
+                            $contOPC++;
                                 }
                             }
+
                         } elseif ($row2['tipo_pregunta_id'] == 2) {
                             $sql3 = "SELECT pregunta_id, descripcion, id_opciones 
                         FROM preguntas, tipos_preguntas,encuestas,opciones 
@@ -102,7 +105,8 @@ $resultado2 = mysqli_Query($conex, $sql2);
                             $resultado3 = mysqli_query($conex, $sql3);
                             while ($row3 = mysqli_fetch_array($resultado3)) {
                                 if ($row2['id_pregunta'] == $row3['pregunta_id']) {
-                                    echo '<div class="form-outline m-0">
+                                    echo '<div class="form-outline m-0">    
+                                    <input type="int" name="id_opcion'.$cont.'" value="'.$row3['id_opciones'].'" style="display:none; position:relative;">
                                     <input type="int" name="id_pregunta'.$cont.'" value="'.$row3['pregunta_id'].'" style="display:none; position:relative;">
                                     <textarea class="form-control" name="texto'.$cont.'" rows="4" placeholder="' . $row3['descripcion'] . '"></textarea>
                                     <label class="form-label" for="form4Example3" style="color:#808488">Opcional</label>

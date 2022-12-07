@@ -27,10 +27,10 @@ while($rowENC= mysqli_fetch_array($resultadoENC))
 
        echo '<!-- INICIO CONTENEDOR ENCUESTA -->
        <div class="col-sm-12 col-md-6 col-xl-4">
-            <div class="h-100 bg-secondary rounded p-4" id=encuesta>
+            <div class="h-100 bg-secondary rounded p-3" id=encuesta>
 
-                <div class="bg-secondary text-center rounded p-4">
-                    <h2>'.$rowENC['nombre_encuesta'].'</h2>'.$rowENC['nombre_curso'].'
+                <div class="bg-secondary text-center rounded p-3">
+                    <h2>'.$rowENC['nombre_encuesta'].'</h2> Curso: '.$rowENC['nombre_curso'].'
                 </div>';
                 
 
@@ -43,20 +43,21 @@ $resultadoPRE= mysqli_query($conex, $sqlPRE);
 
                 if($rowPRE['encuesta_id'] == $rowENC['id_encuesta'])
                 {
-                echo'<div class="bg-secondary text-center rounded p-4">
+                echo'<div class="bg-secondary text-center rounded p-3">
                     <h5 style="color:red">'.$rowPRE['nombre_pregunta'].'</h5>';
 
 
-$sqlOPC= "SELECT descripcion, pregunta_id FROM opciones";
+$sqlOPC= "SELECT descripcion, pregunta_id, id_opciones FROM opciones";
 $resultadoOPC= mysqli_Query($conex, $sqlOPC);
                     while($rowOPC= mysqli_fetch_array($resultadoOPC))
                     {
                         if($rowPRE['id_pregunta'] == $rowOPC['pregunta_id'])
                         {
 
-$sqlRES= "SELECT id_encuesta, id_pregunta, fecha, respuesta_multiplechoice 
-FROM cursos, encuestas, resultados, preguntas WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id 
+$sqlRES= "SELECT id_encuesta, id_pregunta, fecha, respuesta_multiplechoice, opcion_id 
+FROM cursos, encuestas, resultados, preguntas, opciones WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id 
 AND resultados.resultado_curso_id = cursos.id_curso AND resultados.respuesta_multiplechoice != '0' 
+AND  resultados.opcion_id = opciones.id_opciones
 AND preguntas.id_pregunta = resultados.pregunta_id AND preguntas.id_pregunta = $id_pregunta";
 
 if ($encuesta > 0) {
@@ -82,23 +83,30 @@ if (mysqli_num_rows($resultadoRES)>0)
     while($rowRES= mysqli_fetch_array($resultadoRES))
     {
         $acum++;
-        if($rowRES['respuesta_multiplechoice'] == $rowOPC['descripcion'])
+        if($rowRES['opcion_id'] == $rowOPC['id_opciones'] )
         {
-            $rowRES['respuesta_multiplechoice'];
+            $rowOPC['descripcion'];
             $contOPC++;
         }
     }
     $total = round( 100/$acum*$contOPC);
-    
+
 }
 else
-{ $total= 0; }
-                        echo'<h6>'.$rowOPC['descripcion'].'</h6>
-                        <div class="pg-bar mb-3">
+{ $total= 0;
+    $contOPC=0;
+    $acum=0;
+}
+//$total = round( 100/$acum*$contOPC);
+    echo'<div class="mb-2">
+    <div class="d-flex justify-content-between align-items-center"><h6 class="m-0">'.$rowOPC['descripcion'].'</h6><p class="m-0">'.$contOPC."/".$acum.'</p></div>
+                        <div class="pg-bar">
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="'.$total.'" aria-valuemin="0" aria-valuemax="100">'.$total.'%</div>
                             </div>
-                        </div>';
+                        </div>
+        </div>
+        ';
                         }
                     }
 
