@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2022 a las 23:47:20
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 07-12-2022 a las 18:15:45
+-- Versión del servidor: 10.5.17-MariaDB-cll-lve
+-- Versión de PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,31 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tesla_encuestas`
+-- Base de datos: `u407531451_encuestas`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `alumnos`
---
-
-CREATE TABLE `alumnos` (
-  `id_alumno` int(11) NOT NULL,
-  `usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `asignacion_encuesta`
---
-
-CREATE TABLE `asignacion_encuesta` (
-  `id_asignacion_encuesta` int(11) NOT NULL,
-  `curso_id` int(11) NOT NULL,
-  `encuesta_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- --------------------------------------------------------
 
@@ -54,6 +31,14 @@ CREATE TABLE `cursos` (
   `id_curso` int(11) NOT NULL,
   `nombre_curso` text COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `cursos`
+--
+
+INSERT INTO `cursos` (`id_curso`, `nombre_curso`) VALUES
+(1, 'Prueba'),
+(140, 'DEMO 2022');
 
 -- --------------------------------------------------------
 
@@ -71,11 +56,8 @@ CREATE TABLE `encuestas` (
 --
 
 INSERT INTO `encuestas` (`id_encuesta`, `nombre_encuesta`) VALUES
-(6, '0'),
-(7, '0'),
-(8, 'Encuesta Nº1'),
-(9, 'Encuesta julian'),
-(10, 'Encuesta final');
+(1, 'Prueba Tesla'),
+(2, 'Encuesta 1 ');
 
 -- --------------------------------------------------------
 
@@ -94,45 +76,19 @@ CREATE TABLE `opciones` (
 --
 
 INSERT INTO `opciones` (`id_opciones`, `descripcion`, `pregunta_id`) VALUES
-(1, '', 4),
-(2, '', 5),
-(3, 'mas', 6),
-(4, '', 6),
-(5, '', 6),
-(6, '', 6),
-(7, '', 6),
-(8, '', 6),
-(9, 'mal', 7),
-(10, 'mas', 8),
-(11, 'bien', 8),
-(12, 'regular', 8),
-(13, '', 8),
-(14, '', 8),
-(15, '', 8),
-(16, 'rey', 9),
-(17, 'reyna', 9),
-(18, '', 9),
-(19, '', 9),
-(20, '', 9),
-(21, '', 9),
-(22, 'ly', 10),
-(23, 'le', 10),
-(24, 'ly', 11),
-(25, 'le', 11),
-(26, 'lo', 11),
-(27, 'pop', 12),
-(28, 'comentanos', 13),
-(29, 'uno', 14),
-(30, 'dos', 14),
-(31, 'uno', 15),
-(32, 'dos', 15),
-(33, 'esta es la marca de agua', 16),
-(34, 'opcion1', 17),
-(35, 'opcion2', 17),
-(36, 'opcion3', 17),
-(37, 'opcion4', 17),
-(38, 'opcion5', 17),
-(39, 'marca de agua', 18);
+(1, 'Si', 1),
+(2, 'No', 1),
+(3, 'A veces', 1),
+(4, 'Si', 2),
+(5, 'No', 2),
+(6, 'En caso de haber tenido alguna dificultad contanos porqué...', 3),
+(7, 'Si', 4),
+(8, 'No', 4),
+(9, 'A veces', 4),
+(10, 'Aquí podes dejarnos algún comentario o sugerencia...', 5),
+(11, 'Comprensible', 6),
+(12, 'Incomprensible', 6),
+(13, 'Deje aquí su comentario o sugerencia.', 7);
 
 -- --------------------------------------------------------
 
@@ -152,22 +108,13 @@ CREATE TABLE `preguntas` (
 --
 
 INSERT INTO `preguntas` (`id_pregunta`, `nombre_pregunta`, `tipo_pregunta_id`, `encuesta_id`) VALUES
-(3, 'Pregunta Nº1 de la encuesta 3', 1, 0),
-(4, 'Pregunta Nº2 de la encuesta 3', 1, 0),
-(5, '', 1, 0),
-(6, 'pregunta Nº3 de la encuesta 6', 1, 0),
-(7, 'pregunta Nº4 de la encuesta 6', 1, 0),
-(8, 'pregunta Nº5 de la encuesta 6', 1, 0),
-(9, 'pregunta Nº6  de la encuesta 6', 1, 0),
-(10, 'pregunta Nº7  de la encuesta 6', 1, 0),
-(11, 'pregunta Nº7  de la encuesta 6', 1, 0),
-(12, 'pregunta Nº7 de la encuesta 6', 1, 0),
-(13, 'pregunta Nº7 de la encuesta 6', 1, 0),
-(14, 'Julian', 1, 8),
-(15, 'pregunta julian', 1, 9),
-(16, 'pregunta 2', 1, 9),
-(17, '¿Pregunta final?', 1, 10),
-(18, '¿Pregunta final dos?', 2, 10);
+(1, '¿Has consultado las clases subidas al aula virtual?', 1, 1),
+(2, '¿Tuviste alguna dificultad para encontrar los contenidos?', 1, 1),
+(3, '¿Por qué?', 2, 1),
+(4, '¿Descargas los PDF del aula virtual para leerlos?', 1, 1),
+(5, '¿Te gustaría agregar algo más?', 2, 1),
+(6, 'Las explicaciones del docente le resultaron', 1, 2),
+(7, '¿Te gustaría agregar algo más?', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -177,10 +124,20 @@ INSERT INTO `preguntas` (`id_pregunta`, `nombre_pregunta`, `tipo_pregunta_id`, `
 
 CREATE TABLE `respondio` (
   `id_inscripcion` int(11) NOT NULL,
-  `respondio` int(11) NOT NULL,
-  `curso_encuesta_id` int(11) NOT NULL,
-  `alumno_id` int(11) NOT NULL
+  `curso_id` int(11) NOT NULL,
+  `id_alumno` int(11) NOT NULL,
+  `encuesta_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `respondio`
+--
+
+INSERT INTO `respondio` (`id_inscripcion`, `curso_id`, `id_alumno`, `encuesta_id`) VALUES
+(11, 1, 1, 2),
+(13, 140, 7221, 1),
+(14, 140, 7275, 1),
+(15, 140, 7281, 1);
 
 -- --------------------------------------------------------
 
@@ -190,11 +147,48 @@ CREATE TABLE `respondio` (
 
 CREATE TABLE `resultados` (
   `id_resultado` int(11) NOT NULL,
+  `resultado_encuesta_id` int(11) NOT NULL,
   `resultado_curso_id` int(11) NOT NULL,
   `respuesta_text` text COLLATE utf8_spanish2_ci NOT NULL,
   `respuesta_multiplechoice` text COLLATE utf8_spanish2_ci NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
+  `opcion_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `resultados`
+--
+
+INSERT INTO `resultados` (`id_resultado`, `resultado_encuesta_id`, `resultado_curso_id`, `respuesta_text`, `respuesta_multiplechoice`, `fecha`, `pregunta_id`, `opcion_id`) VALUES
+(30, 1, 140, '0', 'Si', '2022-11-25', 0, 0),
+(31, 1, 140, '0', 'Si', '2022-11-25', 0, 0),
+(32, 1, 140, '0', 'A veces', '2022-11-25', 0, 0),
+(33, 1, 140, 'No los encontré', '0', '2022-11-25', 3, 0),
+(34, 1, 140, 'me gusta el edificio', '0', '2022-11-25', 5, 0),
+(35, 1, 140, '0', 'Si', '2022-11-25', 0, 0),
+(36, 1, 140, '0', 'No', '2022-11-25', 0, 0),
+(37, 1, 140, '0', 'Si', '2022-11-25', 0, 0),
+(40, 1, 140, '0', 'Si', '2022-11-25', 0, 0),
+(41, 1, 140, '0', 'No', '2022-11-25', 0, 0),
+(42, 1, 140, '0', 'A veces', '2022-11-25', 0, 0),
+(45, 2, 1, '0', 'Comprensible', '2022-11-25', 0, 0),
+(46, 1, 140, '0', 'Si', '2022-11-30', 0, 0),
+(47, 1, 140, '0', 'No', '2022-11-30', 0, 0),
+(48, 1, 140, '0', 'Si', '2022-11-30', 0, 0),
+(49, 1, 140, 'bkñjbjkbj', '0', '2022-11-30', 5, 0),
+(50, 1, 140, '0', 'Si', '2022-12-05', 1, 0),
+(51, 1, 140, '0', 'No', '2022-12-05', 2, 0),
+(52, 1, 140, '0', 'Si', '2022-12-05', 4, 0),
+(53, 1, 140, 'Gracias!', '0', '2022-12-05', 5, 0),
+(54, 1, 140, '0', 'No', '2022-12-06', 1, 0),
+(55, 1, 140, '0', 'No', '2022-12-06', 2, 0),
+(56, 1, 140, '0', 'Si', '2022-12-06', 4, 0),
+(57, 1, 140, '0', 'Si', '2022-12-06', 1, 0),
+(58, 1, 140, '0', 'No', '2022-12-06', 2, 0),
+(59, 1, 140, '0', 'Si', '2022-12-06', 4, 0),
+(60, 1, 140, 'Porque soy muy inteligente', '0', '2022-12-06', 3, 0),
+(61, 1, 140, 'La gente de diseño es muy copada', '0', '2022-12-06', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -212,26 +206,12 @@ CREATE TABLE `tipos_preguntas` (
 --
 
 INSERT INTO `tipos_preguntas` (`id_tipo_pregunta`, `tipo`) VALUES
-(1, 'checkbox'),
-(2, 'texto');
+(1, 'Múltiple choice'),
+(2, 'Texto');
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `alumnos`
---
-ALTER TABLE `alumnos`
-  ADD PRIMARY KEY (`id_alumno`);
-
---
--- Indices de la tabla `asignacion_encuesta`
---
-ALTER TABLE `asignacion_encuesta`
-  ADD PRIMARY KEY (`id_asignacion_encuesta`),
-  ADD KEY `curso_id` (`curso_id`),
-  ADD KEY `encuesta_id` (`encuesta_id`);
 
 --
 -- Indices de la tabla `cursos`
@@ -264,15 +244,19 @@ ALTER TABLE `preguntas`
 -- Indices de la tabla `respondio`
 --
 ALTER TABLE `respondio`
-  ADD KEY `curso_encuesta_id` (`curso_encuesta_id`),
-  ADD KEY `alumno_id` (`alumno_id`);
+  ADD PRIMARY KEY (`id_inscripcion`),
+  ADD KEY `curso_encuesta_id` (`curso_id`),
+  ADD KEY `encuesta_id` (`encuesta_id`);
 
 --
 -- Indices de la tabla `resultados`
 --
 ALTER TABLE `resultados`
   ADD PRIMARY KEY (`id_resultado`),
-  ADD KEY `resultado_curso_id` (`resultado_curso_id`);
+  ADD KEY `resultado_curso_id` (`resultado_curso_id`),
+  ADD KEY `resultado_encuesta_id` (`resultado_encuesta_id`),
+  ADD KEY `pregunta_id` (`pregunta_id`),
+  ADD KEY `opcion_id` (`opcion_id`);
 
 --
 -- Indices de la tabla `tipos_preguntas`
@@ -285,46 +269,34 @@ ALTER TABLE `tipos_preguntas`
 --
 
 --
--- AUTO_INCREMENT de la tabla `alumnos`
---
-ALTER TABLE `alumnos`
-  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `asignacion_encuesta`
---
-ALTER TABLE `asignacion_encuesta`
-  MODIFY `id_asignacion_encuesta` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `cursos`
---
-ALTER TABLE `cursos`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT de la tabla `encuestas`
 --
 ALTER TABLE `encuestas`
-  MODIFY `id_encuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_encuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `opciones`
 --
 ALTER TABLE `opciones`
-  MODIFY `id_opciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_opciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `respondio`
+--
+ALTER TABLE `respondio`
+  MODIFY `id_inscripcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `resultados`
 --
 ALTER TABLE `resultados`
-  MODIFY `id_resultado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_resultado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_preguntas`
@@ -335,13 +307,6 @@ ALTER TABLE `tipos_preguntas`
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `asignacion_encuesta`
---
-ALTER TABLE `asignacion_encuesta`
-  ADD CONSTRAINT `asignacion_encuesta_ibfk_2` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`id_curso`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `asignacion_encuesta_ibfk_3` FOREIGN KEY (`encuesta_id`) REFERENCES `encuestas` (`id_encuesta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `opciones`
@@ -359,8 +324,15 @@ ALTER TABLE `preguntas`
 -- Filtros para la tabla `respondio`
 --
 ALTER TABLE `respondio`
-  ADD CONSTRAINT `respondio_ibfk_1` FOREIGN KEY (`curso_encuesta_id`) REFERENCES `asignacion_encuesta` (`id_asignacion_encuesta`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `respondio_ibfk_2` FOREIGN KEY (`alumno_id`) REFERENCES `alumnos` (`id_alumno`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `respondio_ibfk_1` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`id_curso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `respondio_ibfk_2` FOREIGN KEY (`encuesta_id`) REFERENCES `encuestas` (`id_encuesta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `resultados`
+--
+ALTER TABLE `resultados`
+  ADD CONSTRAINT `resultados_ibfk_1` FOREIGN KEY (`resultado_encuesta_id`) REFERENCES `encuestas` (`id_encuesta`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `resultados_ibfk_2` FOREIGN KEY (`resultado_curso_id`) REFERENCES `cursos` (`id_curso`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
