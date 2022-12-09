@@ -59,7 +59,8 @@ $resultado1 = mysqli_query($conex, $sql1);
 
 <!-- INICIO RESULTADOS -->
 <div class="container-fluid pt-4 px-4">
-    <div class="row g-4"  id="respuesta">
+    <div class="row g-4" id="respuesta">
+
 
     
 <?php
@@ -73,7 +74,7 @@ while($rowENC= mysqli_fetch_array($resultadoENC))
 
        echo '<!-- INICIO CONTENEDOR ENCUESTA -->
        <div class="col-sm-12 col-md-6 col-xl-4">
-            <div class="h-100 bg-secondary rounded p-3" id=encuesta>
+            <div class="h-100 bg-secondary rounded p-3" >
 
                 <div class="bg-secondary text-center rounded p-3">
                     <h2>'.$rowENC['nombre_encuesta'].'</h2>
@@ -148,7 +149,7 @@ else
 }
 ?>
 
-
+</div>
 
         <!-- <div class="col-sm-12 col-md-6 col-xl-4">
             <div class="h-100 bg-secondary rounded p-4" id=encuesta>
@@ -172,8 +173,8 @@ $resultado3 = mysqli_Query($conex, $sql3);
 ?>
 
         <!-- INICIO PREVIEW COMENTARIOS -->
-        <div class="container-fluid pt-4 px-4">
-            <div class="bg-secondary rounded h-100 p-4">
+        
+            <div class="bg-secondary rounded h-100 p-4 mt-4">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <h4 class="mb-0">Comentarios/Sugerencias</h4>
                     <a href="comentarios.php" class="btn btn-link rounded-pill m-2">Ver todos</a>
@@ -203,7 +204,7 @@ $resultado3 = mysqli_Query($conex, $sql3);
                     </div>
                 </div>
             </div>
-        </div>
+
         <!-- FIN PREVIEW COMENTARIOS -->
 
 

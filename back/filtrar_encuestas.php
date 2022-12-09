@@ -23,8 +23,8 @@ while ($rowENC = mysqli_fetch_array($resultadoENC)) {
     $id_curso = $rowENC['id_curso'];
 
     echo '<!-- INICIO CONTENEDOR ENCUESTA -->
-       <div class="col-sm-12 col-md-6 col-xl-4">
-            <div class="h-100 bg-secondary rounded p-3" id=encuesta>
+    <div class="col-sm-12 col-md-6 col-xl-4">
+            <div class="h-100 bg-secondary rounded p-3">
 
                 <div class="bg-secondary text-center rounded p-3">
                     <h2>' . $rowENC['nombre_encuesta'] . '</h2> Curso: ' . $rowENC['nombre_curso'] . '
@@ -100,54 +100,6 @@ AND preguntas.id_pregunta = resultados.pregunta_id AND preguntas.id_pregunta = $
         }
     }
     echo ' </div>
-        </div>
+        
         <!-- FIN CONTENEDOR ENCUESTA -->';
 }
-?>
-
-<?php
-$sql3 = "SELECT nombre_encuesta, nombre_curso, nombre_pregunta, fecha, respuesta_text 
-FROM encuestas, cursos, preguntas, resultados 
-WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id 
-AND preguntas.id_pregunta = resultados.pregunta_id 
-AND resultados.resultado_curso_id = cursos.id_curso 
-AND resultados.respuesta_text != '0'
-ORDER BY id_resultado DESC LIMIT 5";
-
-$resultado3 = mysqli_Query($conex, $sql3);
-?>
-
-        <!-- INICIO PREVIEW COMENTARIOS -->
-        <div class="container-fluid pt-4 px-4">
-            <div class="bg-secondary rounded h-100 p-4">
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h4 class="mb-0">Comentarios/Sugerencias</h4>
-                    <a href="comentarios.php" class="btn btn-link rounded-pill m-2">Ver todos</a>
-                </div>
-
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="owl-carousel testimonial-carousel">
-
-                        <?php
-                        while ($row2 = mysqli_fetch_array($resultado3)) {
-                            echo '
-                            <!-- INICIO TESTIMONIO -->
-                        <div class="testimonial-item text-center">
-                            <div class="d-flex align-items-center justify-content-between mb-2" style="background-color: black; border-radius: 10px;">
-                            <h6 class="m-2">Encuesta: ' . $row2[0] . '</h6>
-                            <h6 class="m-2">Curso: '.$row2[1].'</h6>
-                            <h6 class="m-2">Pregunta: '.$row2[2].'</h6>
-                            <h6 class="m-2">'.$row2[3].'</h6>
-                            </div>
-                            <p class="mb-0">'.$row2[4].'</p>
-                        </div>
-                        <!-- FIN TESTIMONIO -->
-                            ';
-                        }
-                        ?>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FIN PREVIEW COMENTARIOS -->
