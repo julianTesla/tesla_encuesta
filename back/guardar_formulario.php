@@ -29,7 +29,7 @@ if(mysqli_num_rows($resultadob) > 0)
     VALUES ('$curso_id', '$usuer_id', '$encuesta_id')"; 
     $resultado1a= mysqli_query($conex, $sql1a);
 
-//---------------------------------------------------------------//
+//--------------------------------------------------------------- //
     if (isset($_POST['respuesta1'])) 
     {
         $fecha = date('Y-m-d', time());

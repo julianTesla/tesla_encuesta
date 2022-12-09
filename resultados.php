@@ -59,7 +59,7 @@ $resultado1 = mysqli_query($conex, $sql1);
 
 <!-- INICIO RESULTADOS -->
 <div class="container-fluid pt-4 px-4">
-    <div class="row g-4" id="respuesta">
+    <div class="row g-4"  id="respuesta">
 
     
 <?php
