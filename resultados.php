@@ -11,14 +11,14 @@ $resultado1 = mysqli_query($conex, $sql1);
 
 <!-- INICIO BARRA DE FILTRO -->
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="height: 11rem;">
     <div class="bg-secondary rounded h-100 p-4">
-        <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="d-flex align-items-center justify-content-between">
             
 
             <form action="">
                 <!-- <label>Seleccionar encuesta</label> -->
-                <select class="form-select js-example-basic-single" style="width: 110%;" id="encuesta">
+                <select class="form-select js-example-basic-single" data-show-subtext="true" data-live-search="true" style="width: 110%;" id="encuesta">
                     <option value="0">Seleccionar encuesta</option>
                     <?php
                     while ($row1 = mysqli_fetch_array($resultado1)) {
@@ -49,7 +49,10 @@ $resultado1 = mysqli_query($conex, $sql1);
                 <input class="input-sm form-control" type=date style="background-color:red; color:white" id="f2">
             </div>
 
-            <button class="btn btn-primary m-2" onclick="filtrar();">Buscar</button>
+            <div class="d-flex flex-column">
+                <button class="btn btn-primary m-2" onclick="filtrar();">Buscar</button>
+                <button class="btn btn-outline-primary m-2" onclick="cancelar(1);">Quitar filtros</button>
+            </div>
 
         </div>
     </div>
@@ -61,8 +64,6 @@ $resultado1 = mysqli_query($conex, $sql1);
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4" id="respuesta">
 
-
-    
 <?php
 /*Consultas sql para traer los datos de los datos de las encuestas, preguntas, opciones */
 $sqlENC= "SELECT * FROM encuestas ORDER BY encuestas.id_encuesta DESC LIMIT 6";
@@ -91,7 +92,6 @@ $resultadoPRE= mysqli_query($conex, $sqlPRE);
                 {
                 echo'<div class="bg-secondary text-center rounded p-3">
                     <h5 style="color:red">'.$rowPRE['nombre_pregunta'].'</h5>';
-
 
 $sqlOPC= "SELECT descripcion, pregunta_id, id_opciones FROM opciones";
 $resultadoOPC= mysqli_Query($conex, $sqlOPC);
@@ -148,17 +148,7 @@ else
         <!-- FIN CONTENEDOR ENCUESTA -->';
 }
 ?>
-
 </div>
-
-        <!-- <div class="col-sm-12 col-md-6 col-xl-4">
-            <div class="h-100 bg-secondary rounded p-4" id=encuesta>
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <h1>Encuesta 2</h1>
-                </div>
-            </div>
-        </div> -->
-
 
 <?php
 $sql3 = "SELECT nombre_encuesta, nombre_curso, nombre_pregunta, fecha, respuesta_text 
@@ -206,16 +196,15 @@ $resultado3 = mysqli_Query($conex, $sql3);
             </div>
 
         <!-- FIN PREVIEW COMENTARIOS -->
-
-
-    </div>
+        
 </div>
+    
+    
 
 <script>
     $(document).ready(function() {
         $('.js-example-basic-single').select2({
-            style: 'form-control'
-        });
+});
     });
 </script>
 
@@ -242,6 +231,27 @@ $resultado3 = mysqli_Query($conex, $sql3);
         });
 
     }
+    function cancelar(param){
+
+        $.ajax({
+            data: {
+                "cancelar": param
+            },
+            url: 'back/filtrar_encuestas.php',
+            type: 'POST',
+            success: function(mensaje) {
+                $('#respuesta').html(mensaje);
+            }
+        });
+    }
+</script>
+<script>
+    let html ='<a href="Crear_encuesta.php" class="nav-item nav-link "><i class="far fa-file-alt me-2"></i>Crear encuesta</a>'+
+                '<a href="asignarEncuesta.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Asignar encuesta</a>'+
+                '<a href="listaEncuestas.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Lista de encuestas</a>'+
+                '<a href="resultados.php" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i>Resultados</a>'+
+                '<a href="comentarios.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Comentarios</a>';
+                    document.getElementById("activos").innerHTML = html;
 </script>
 <?php
 include "parte_inferior.php";

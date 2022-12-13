@@ -1,6 +1,13 @@
 <?php
 $id_encuesta = $_POST['encuestas'];
 $id_encuesta;
+
+if( $id_encuesta == 0)
+{
+    echo '<textarea id="p1" class="form-control" style="height: 30rem">
+    ¡¡¡  POR FAVOR SELECCIONE UNA ENCUESTA !!!
+    </textarea>';
+}
 ?>
 <textarea id="p1" class="form-control" style="height: 30rem">
 

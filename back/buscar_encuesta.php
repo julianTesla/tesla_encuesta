@@ -10,6 +10,7 @@ $sql2 = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY id_encuesta
 $resultado2 = mysqli_Query($conex, $sql2);
 
 while ($row2 = mysqli_fetch_array($resultado2)) {
+    
     $sql3 = "SELECT encuesta_id, id_pregunta, nombre_pregunta, tipo 
     FROM preguntas, tipos_preguntas,encuestas WHERE preguntas.tipo_pregunta_id = tipos_preguntas.id_tipo_pregunta 
     AND encuestas.id_encuesta = preguntas.encuesta_id ORDER BY id_pregunta";
@@ -21,23 +22,15 @@ while ($row2 = mysqli_fetch_array($resultado2)) {
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h5 class="mb-0"><?php echo $row2[1]; ?></h5>
 
-                <!-- BOTON EDITAR ENCUESTA 
-            <form action="/" method="GET">
-                <button type="submit" class="btn btn-success">Editar encuesta <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z" />
-                        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                    </svg>
-                </button>
-            </form> -->
+               
 
                 <!-- BOTON ASIGNAR ENCUESTA -->
                 <form action="./asignarEncuesta.php" method="GET">
-                    <button type="submit" class="btn btn-info m-2 align-items-center">Asignar a un curso
+                <a class="btn btn-info m-2 align-items-center" href="asignarEncuesta.php?id_encuesta=<?php echo $row2['id_encuesta']; ?>">Asignar a un curso
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                         </svg>
-                    </button>
+                        </a>
                 </form>
 
             </div>
@@ -85,7 +78,7 @@ while ($row2 = mysqli_fetch_array($resultado2)) {
                     </tr>';
                             }
                         }
-                        ?>                       
+                        ?>            
                     </tbody>
                 </table>
             </div>
@@ -93,10 +86,8 @@ while ($row2 = mysqli_fetch_array($resultado2)) {
     </div>
     <!-- FIN ENCUESTA -->
 <?php
+    }
 }
-}
-
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -134,13 +125,13 @@ if (mysqli_num_rows($resultado) > 0) {
                             </form> -->
 
                             <!-- BOTON ASIGNAR ENCUESTA -->
-                            <form action="./asignarEncuesta.php" method="GET">
-                                <button type="submit" class="btn btn-info m-2 align-items-center">Asignar a un curso
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                                    </svg>
-                                </button>
-                            </form> 
+                <form action="./asignarEncuesta.php" method="GET">
+                <a class="btn btn-info m-2 align-items-center" href="asignarEncuesta.php?id_encuesta='.$row['id_encuesta'].'">Asignar a un curso
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+                        </svg>
+                        </a>
+                </form>
 
                         </div>
                         <div class="table-responsive">

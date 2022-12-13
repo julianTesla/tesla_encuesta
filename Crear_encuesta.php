@@ -51,6 +51,14 @@ include "parte_superior.php";
         });
     }
 </script> -->
+<script>
+    let html ='<a href="Crear_encuesta.php" class="nav-item nav-link active"><i class="far fa-file-alt me-2"></i>Crear encuesta</a>'+
+                '<a href="asignarEncuesta.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Asignar encuesta</a>'+
+                '<a href="listaEncuestas.php" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Lista de encuestas</a>'+
+                '<a href="resultados.php" class="nav-item nav-link "><i class="fa fa-chart-bar me-2"></i>Resultados</a>'+
+                '<a href="comentarios.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Comentarios</a>';
+                    document.getElementById("activos").innerHTML = html;
+</script>
 
 <?php
 include "parte_inferior.php";

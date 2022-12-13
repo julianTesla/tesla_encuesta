@@ -7,11 +7,10 @@ $resultado = mysqli_query($conex, $sql);
 
 $sql1 = "SELECT id_encuesta, nombre_encuesta FROM encuestas ORDER BY encuestas.id_encuesta DESC";
 $resultado1 = mysqli_query($conex, $sql1);
-
 ?>
 
 <!-- INICIO BARRA DE FILTRO -->
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4" style="height: 11rem;">
     <div class="bg-secondary rounded h-100 p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             
@@ -50,10 +49,10 @@ $resultado1 = mysqli_query($conex, $sql1);
                 <label>Fecha hasta</label>
                 <input class="input-sm form-control" type=date style="background-color:red; color:white" id="f2">
             </div>
-            <div class="form-item">
-                <button class="btn btn-primary m-2" style="height: 2.7rem;" onclick="filtrar();"> Buscar </button>
+            <div class="d-flex flex-column">
+                <button class="btn btn-primary m-2" onclick="filtrar();">Buscar</button>
+                <button class="btn btn-outline-primary m-2" onclick="cancelar(1);">Quitar filtros</button>
             </div>
-
         </div>
     </div>
 </div>
@@ -64,8 +63,8 @@ $resultado1 = mysqli_query($conex, $sql1);
 $sql3 = "SELECT nombre_encuesta, nombre_curso, nombre_pregunta, fecha, respuesta_text 
 FROM cursos, encuestas, resultados, preguntas WHERE encuestas.id_encuesta = resultados.resultado_encuesta_id
 AND preguntas.id_pregunta= resultados.pregunta_id 
-AND resultados.resultado_curso_id = cursos.id_curso AND resultados.respuesta_text != '0' 
-ORDER BY encuestas.id_encuesta DESC;";
+AND resultados.resultado_curso_id = cursos.id_curso AND resultados.respuesta_text != '0'            
+ORDER BY resultados.id_resultado DESC;";          
 
 $resultado3 = mysqli_Query($conex, $sql3);
 while ($row2 = mysqli_fetch_array($resultado3)) {
@@ -118,6 +117,30 @@ while ($row2 = mysqli_fetch_array($resultado3)) {
         });
 
     }
+
+    function cancelar(param) {
+
+
+$.ajax({
+data: {
+        "cancelar": param
+        },
+url: 'back/filtrar_comentarios.php',
+type: 'POST',
+success: function(mensaje) {
+    $('#respuesta').html(mensaje);
+}
+});
+
+}
+</script>
+<script>
+    let html ='<a href="Crear_encuesta.php" class="nav-item nav-link "><i class="far fa-file-alt me-2"></i>Crear encuesta</a>'+
+                '<a href="asignarEncuesta.php" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Asignar encuesta</a>'+
+                '<a href="listaEncuestas.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Lista de encuestas</a>'+
+                '<a href="resultados.php" class="nav-item nav-link "><i class="fa fa-chart-bar me-2"></i>Resultados</a>'+
+                '<a href="comentarios.php" class="nav-item nav-link active"><i class="fa fa-th me-2"></i>Comentarios</a>';
+                    document.getElementById("activos").innerHTML = html;
 </script>
 
 <?php

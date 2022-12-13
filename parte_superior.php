@@ -48,6 +48,7 @@ if($_SESSION['usuario'] == false)
     <!-- Librerias para el buscador en le select -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 </head>
 
 <body>
@@ -71,12 +72,14 @@ if($_SESSION['usuario'] == false)
                 </a>
                 
                 
-                <div class="navbar-nav w-100">
-                    <a href="Crear_encuesta.php" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Crear encuesta</a>
+                <div class="navbar-nav w-100" id="activos">
+                    
+                    <a href="Crear_encuesta.php" class="nav-item nav-link "><i class="far fa-file-alt me-2"></i>Crear encuesta</a>
                     <a href="asignarEncuesta.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Asignar encuesta</a>
                     <a href="listaEncuestas.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Lista de encuestas</a>
-                    <a href="resultados.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Resultados</a>
+                    <a href="resultados.php" class="nav-item nav-link "><i class="fa fa-chart-bar me-2"></i>Resultados</a>
                     <a href="comentarios.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Comentarios</a>
+                    
                 </div>
             </nav>
         </div>
