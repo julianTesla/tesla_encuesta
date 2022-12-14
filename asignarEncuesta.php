@@ -57,7 +57,7 @@ include "conexion/conex.php";
         {
             $id_encuesta = $_GET['id_encuesta'];
             ?>
-            <textarea id="p1" class="form-control" style="height: 30rem">
+            <textarea id="p1" class="form-control" style="height: 30rem; background: black" disabled>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- jQuery -->
